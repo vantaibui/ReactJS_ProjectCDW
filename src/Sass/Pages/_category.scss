@@ -1,0 +1,140 @@
+.category {
+    max-width: 1230px;
+    width: 100%;
+    margin: auto;
+    .category__content {
+        padding: 50px 0 30px;
+        .nav--category {
+            .nav-item {
+                .nav-link {
+                    padding: 10px 0;
+                    margin-right: 25px;
+                    letter-spacing: 1px;
+                    @include text($color-black-1, $fs-4 + 2, $fw-bold);
+                    &.active {
+                        color: $color-brown-0;
+                    }
+                }
+            }
+        }
+        .tab-content--category {
+            .category__container {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                grid-column-gap: 30px;
+                grid-row-gap: 40px;
+                .product {
+                    height: 100%;
+                    margin: 5px auto;
+                    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+                    .box {
+                        .box-image {
+                            &:hover {
+                                .image-favorites {
+                                    .circle-icon {
+                                        opacity: 1;
+                                    }
+                                }
+                            }
+                            position: relative;
+                            border-bottom: 1px solid $color-white-2;
+                            margin-bottom: 3%;
+                            transition: all 2s;
+                            .image-product {
+                                a {
+                                    img {
+                                        vertical-align: middle;
+                                        transform: translateZ(0);
+                                        width: 100%;
+                                        height: 100%;
+                                    }
+                                }
+                            }
+                            .image-favorites {
+                                position: absolute;
+                                top: 25%;
+                                left: 65%;
+                                transform: translate(70%, -50%);
+                                transition: all 5s;
+                                .circle-icon {
+                                    position: relative;
+                                    width: 40px;
+                                    height: 40px;
+                                    border: 2px solid $color-white-2;
+                                    border-radius: 50%;
+                                    opacity: 0;
+                                    i {
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 50%;
+                                        transform: translate(-50%, -50%);
+                                        color: $color-white-2;
+                                    }
+                                }
+                                .favorite-title {
+                                    opacity: 0;
+                                    background: $color-black-0;
+                                    border-radius: 4px;
+                                    width: 45px;
+                                    max-height: 70px;
+                                    margin-top: 8px;
+                                    text-align: center;
+                                    a {
+                                        display: block;
+                                        text-decoration: none;
+                                        @include text($color-white-1, $fs-0, $fw-bold);
+                                    }
+                                }
+                                &:hover {
+                                    .circle-icon {
+                                        background: $color-red-0;
+                                        border: 1px solid $color-red-0;
+                                        i {
+                                            color: $color-white-0;
+                                        }
+                                    }
+                                    .favorite-title {
+                                        opacity: 1;
+                                    }
+                                }
+                            }
+                        }
+                        .box-text {
+                            text-align: center;
+                            padding: 10px 10px 20px;
+                            .title {
+                                .product-name {
+                                    margin: 1px 0;
+                                    a {
+                                        text-decoration: none;
+                                        margin-top: 1px;
+                                        margin-bottom: 10px;
+                                        @include text($color-black-2, $fs-1, $fw-bold);
+                                    }
+                                }
+                            }
+                            .price {
+                                @include text($color-pink-0, $fs-0, $fw-bold);
+                                margin: 5px auto;
+                            }
+                            .addInCart {
+                                .btnAdd {
+                                    margin-top: 10px;
+                                    padding: 6px 18px;
+                                    background: $color-pink-0;
+                                    border: 1px solid rgba(0, 0, 0, 0.05);
+                                    text-transform: uppercase;
+                                    text-decoration: none;
+                                    @include text($color-white-0, $fs-0 - 2, $fw-bold);
+                                    &:hover {
+                                        background: $color-brown-2;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

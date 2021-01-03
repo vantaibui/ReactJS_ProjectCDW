@@ -1,0 +1,63 @@
+.menuCategory {
+    .menuCategory__content {
+        max-width: 1230px;
+        min-height: 60px;
+        width: 100%;
+        margin: auto;
+        padding: 20px 15px 0;
+        .row--modifier {
+            margin: 0;
+            align-items: center;
+            .col--modifier {
+                padding: 0;
+                .navbar--modifier {
+                    padding: 0;
+                    text-transform: uppercase;
+                    @include text($color-black-4, $fs-2, $fw-bold);
+                    .navbar-nav {
+                        display: flex;
+                        align-items: center;
+                        .nav-item {
+                            .nav-link {
+                                padding: 0;
+                                text-decoration: none;
+                                @include text(rgba(102, 102, 102, 0.7), $fs-2, $fw-normal);
+                            }
+                        }
+                        .divider {
+                            opacity: 0.35;
+                            margin: 0 5px;
+                            font-weight: $fw-light;
+                        }
+                    }
+                }
+                .col-right-content {
+                    display: flex;
+                    align-items: center;
+                    p {
+                        display: inline;
+                        margin: 0;
+                        margin-right: 16px;
+                        @include text($color-black-3, $fs-1, $fw-bold);
+                    }
+                    .right-form {
+                        .select-form {
+                            &:focus {
+                                outline: none;
+                            }
+                            box-shadow: inset 0 -1.4em 1em 0 rgba(0, 0, 0, 0.02);
+                            background: $color-white-0;
+                            border: 1px solid $color-white-2;
+                            padding-right: 20px;
+                            height: 35px;
+                            @include text($color-black-0, $fs-0, $fw-bold);
+                            option {
+                                @include text($color-black-0, $fs-0, $fw-bold);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,74 @@
+.banner {
+    padding-top: 60px;
+    max-width: 1230px;
+    width: 100%;
+    margin: auto;
+    .banner-item {
+        border-radius: 10px;
+        padding-bottom: 30px;
+        transition: all 0.8s;
+        &:hover {
+            .banner-inner {
+                .item-inner {
+                    .item-bg {
+                        .bg {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+        }
+        .banner-inner {
+            text-decoration: none;
+            .item-inner {
+                position: relative;
+                .item-bg {
+                    position: relative;
+                    .bg {
+                        img {
+                            width: 100%;
+                            height: 300px;
+                        }
+                    }
+                    .overplay {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0, 0, 0, 0.2);
+                    }
+                }
+                .item-layers {
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    transform: translate(10%, -20%);
+                    .text {
+                        .text-inner {
+                            color: $color-white-0;
+                            h3 {
+                                line-height: 30px;
+                                margin: 3px 0;
+                                @include text($color-white-0, 30px, $fw-normal);
+                            }
+                            .text-line {
+                                margin: 20px 0;
+                                max-width: 50px;
+                                height: 2px;
+                                background-color: rgb(200, 153, 121);
+                            }
+                            .text-title {
+                                text-transform: uppercase;
+                                margin: 3px 0;
+                                line-height: 1;
+                                @include text($color-white-0, 35px, 700);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

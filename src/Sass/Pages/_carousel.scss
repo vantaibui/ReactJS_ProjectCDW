@@ -1,0 +1,77 @@
+.sectionCarousel {
+    .carousel {
+        position: relative;
+        transition: all 0.8s;
+        background: black;
+        .carousel-inner {
+            .carousel-item {
+                img {
+                    height: 600px;
+                }
+                .carousel-caption {
+                    position: absolute;
+                    top: 25%;
+                    left: 20%;
+                    transform: translate(-10%);
+                    text-align: left;
+                    h4 {
+                        margin: 10px 0;
+                        @include text($color-white-0, 22px, 700);
+                    }
+                    h1 {
+                        margin: 5px 0;
+                        line-height: 1;
+                        @include text($color-white-0, 49px, $fw-bold + 100);
+                    }
+                    p {
+                        width: 50%;
+                        margin: 15px 0 30px 0;
+                        @include text($color-white-1, 15px, $fw-bold);
+                    }
+                    .btnDetail {
+                        text-decoration: none;
+                        border: 2px solid currentColor;
+                        border-radius: 5px;
+                        transition: all 0.5s;
+                        text-transform: uppercase;
+                        @include text($color-white-0, 18px, 900);
+                        padding: 10px 30px;
+                        &:hover {
+                            border: 2px solid $color-brown-0;
+                            background: $color-brown-0;
+                        }
+                    }
+                }
+            }
+        }
+        .carousel-control-prev,
+        .carousel-control-next {
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            opacity: 0;
+            width: 40px;
+            height: 40px;
+            border: 2px solid $color-white-0;
+            border-radius: 50%;
+            transition: all 0.5s;
+            .carousel-control-prev-icon {
+                line-height: 40px;
+            }
+            &:hover {
+                background: $color-brown-0;
+                border: 2px solid $color-brown-0;
+            }
+        }
+        .carousel-control-next {
+            left: unset;
+            right: 5%;
+        }
+        &:hover {
+            .carousel-control-prev,
+            .carousel-control-next {
+                opacity: 1;
+            }
+        }
+    }
+}
