@@ -1,6 +1,7 @@
 import { Component, Fragment } from "react";
 import Header from "../Layouts/Header";
 import Footer from "../Layouts/Footer";
+import Information from "../Layouts/Information";
 import { Route } from "react-router-dom";
 
 const HomeLayout = ({ ...props }) => {
@@ -8,6 +9,7 @@ const HomeLayout = ({ ...props }) => {
     <Fragment>
       <Header />
       {props.children}
+      <Information />
       <Footer />
     </Fragment>
   );
@@ -25,6 +27,6 @@ const HomeTemplate = ({ ...props }) => {
       }}
     />
   );
-}
+};
 
 export default HomeTemplate;

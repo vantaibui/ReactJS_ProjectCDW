@@ -1,11 +1,12 @@
 import React from "react";
 import { NavLink, Route } from "react-router-dom";
+import FormSearch from "../Components/FormSearch";
 
 const Menus = [
   { label: "Trang chủ", to: "/", exact: true },
   { label: "giới thiệu", to: "/information", exact: false },
-  { label: "đồng hồ nam", to: "/products", exact: false },
-  { label: "đồng hồ nữ", to: "/products", exact: false },
+  { label: "đồng hồ nam", to: "/category", exact: false },
+  { label: "đồng hồ nữ", to: "/categorynu", exact: false },
   { label: "blogs", to: "/blogs", exact: false },
   { label: "liên hệ", to: "/contact", exact: false },
 ];
@@ -75,12 +76,7 @@ function Header() {
             </NavLink>
           </div>
           <div className="col-7 col--modifier searchCenter">
-            <div className="search">
-              <input type="text" placeholder="Tìm kiếm ..." />
-              <button type="submit">
-                <i className="fa fa-search" />
-              </button>
-            </div>
+            <FormSearch />
           </div>
           <div className="col-2 col--modifier searchRight">
             <div className="menu-searchRight">
@@ -146,9 +142,7 @@ function Header() {
             className="collapse navbar-collapse navbarContent"
             id="navbarNav"
           >
-            <ul className="navbar-nav">
-              {showMenus(Menus)}
-            </ul>
+            <ul className="navbar-nav">{showMenus(Menus)}</ul>
           </div>
         </nav>
       </div>

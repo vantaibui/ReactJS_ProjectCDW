@@ -43,9 +43,13 @@
                             .image-product {
                                 a {
                                     img {
+                                        object-fit: contain;
+                                        object-position: center center;
                                         vertical-align: middle;
                                         transform: translateZ(0);
                                         width: 100%;
+                                        min-height: 250px;
+                                        max-height: 250px;
                                         height: 100%;
                                     }
                                 }
@@ -116,6 +120,9 @@
                             .price {
                                 @include text($color-pink-0, $fs-0, $fw-bold);
                                 margin: 5px auto;
+                                ins {
+                                    text-decoration: none;
+                                }
                             }
                             .addInCart {
                                 .btnAdd {

@@ -32,6 +32,8 @@
                             .image-product {
                                 a {
                                     img {
+                                        object-fit: contain;
+                                        object-position: center center;
                                         vertical-align: middle;
                                         transform: translateZ(0);
                                         width: 100%;

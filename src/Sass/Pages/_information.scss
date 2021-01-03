@@ -23,7 +23,7 @@
                         outline: none;
                     }
                     &::placeholder {
-                        @include text($color-black-0, $fs-1, $fw-bold);
+                        @include text($color-black-7, $fs-1, $fw-bold);
                     }
                     height: 40px;
                     max-width: 70%;
