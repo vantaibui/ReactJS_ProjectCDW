@@ -1,17 +1,6 @@
 import React from "react";
-import ProductItem from "./ProductItem";
 
 const ProductList = (props) => {
-  let { products } = props;
-  let renderProductItem = (products) => {
-    let result;
-    if (products.length > 0) {
-      result = products.map((product, index) => {
-        return <ProductItem key={index} product={product} index={index} />;
-      });
-    }
-    return result;
-  };
   return (
     <table className="table table-bordered table-hover">
       <thead>
@@ -25,7 +14,7 @@ const ProductList = (props) => {
           <th className="text-center">Action</th>
         </tr>
       </thead>
-      {/* <tbody>{renderProductItem(products)}</tbody> */}
+      <tbody>{props.children}</tbody>
     </table>
   );
 };

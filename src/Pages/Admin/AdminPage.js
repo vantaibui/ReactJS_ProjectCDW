@@ -5,7 +5,10 @@ import { Form } from "../../Components/Admin/Form";
 import ProductItem from "../../Components/Admin/ProductItem";
 import ProductList from "../../Components/Admin/ProductList";
 
-import { actionFetchProductsRequest } from "../../Redux/Actions/ProductAction";
+import {
+  actionDeleteProductRequest,
+  actionFetchProductsRequest,
+} from "../../Redux/Actions/ProductAction";
 
 const AdminPage = (props) => {
   let { products } = props;
@@ -14,12 +17,15 @@ const AdminPage = (props) => {
     props.fetchAllProducts();
   }, []);
 
+  let onDeleteProduct = (id) => {
+    props.onDeleteProduct(id);
+  };
+
   let renderProductItem = (products) => {
     let result;
     if (products.length > 0) {
       result = products.map((product, index) => {
-        console.log(product);
-        return <ProductItem key={index} product={product} index={index} />;
+        return <ProductItem key={index} product={product} index={index} onDeleteProduct={onDeleteProduct} />;
       });
     }
     return result;
@@ -43,7 +49,6 @@ const AdminPage = (props) => {
           <Control />
           <div className="row mt-2">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              {/* <ProductList products={products} /> */}
               <ProductList>{renderProductItem(products)}</ProductList>
             </div>
           </div>
@@ -63,6 +68,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchAllProducts: () => {
       dispatch(actionFetchProductsRequest());
+    },
+    onDeleteProduct: (id) => {
+      dispatch(actionDeleteProductRequest(id));
     },
   };
 };

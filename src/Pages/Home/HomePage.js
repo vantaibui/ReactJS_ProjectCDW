@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect } from "react";
 import ProductItem from "../../Components/ProductItem";
 import { actionFetchProductsRequest } from "../../Redux/Actions/ProductAction";
 import { SectionCarousel } from "./SectionCarousel";

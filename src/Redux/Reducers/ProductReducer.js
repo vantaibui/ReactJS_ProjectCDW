@@ -4,8 +4,7 @@ let initialState = [];
 
 let findIndex = (id, list) => {
   let result = -1;
-  for (const index in list) {
-    console.log(index);
+  for (let index in list) {
     if (list[index].id === id) {
       result = index;
     }
@@ -20,7 +19,7 @@ const ProductReducer = (state = initialState, action) => {
       return [...state];
     }
     case DELETE_PRODUCT: {
-      let index = findIndex(action.id, state);
+      let index = findIndex(action.payLoad, state);
       if (index !== -1) {
         state.splice(index, 1);
       }

@@ -2,9 +2,7 @@ import { Fragment } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.scss";
 import Header from "./Layouts/Header";
-import HomePage from "./Pages/Home/HomePage";
 import Routes from "./Routes";
-import HomeTemplate from "./Templates/HomeTemplate";
 
 function App() {
   let showContentMenu = (Routes) => {

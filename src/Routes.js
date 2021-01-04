@@ -11,14 +11,14 @@ const Routes = [
     main: () => <HomePage />,
   },
   {
-    path: "/category",
-    exact: true,
-    main: () => <CategoryPage />,
-  },
-  {
     path: "/admin",
     exact: true,
     main: () => <AdminPage />,
+  },
+  {
+    path: "/category",
+    exact: true,
+    main: () => <CategoryPage />,
   },
   { path: "", exact: false, main: () => <NotFoundPage /> },
 ];

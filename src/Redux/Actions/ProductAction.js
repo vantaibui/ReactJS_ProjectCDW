@@ -20,7 +20,6 @@ export const actionDeleteProductRequest = (id) => {
     return productManagementService
       .deleteProduct(id)
       .then((result) => {
-        console.log(result);
         dispatch(CreateAction(DELETE_PRODUCT, id));
       })
       .catch((error) => {
