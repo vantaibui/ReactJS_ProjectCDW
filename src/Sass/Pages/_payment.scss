@@ -311,7 +311,10 @@
                                 }
                                 .btn-order {
                                     &:hover {
-                                        box-shadow: inset 0 0 0 100px rgba(0, 0, 0, 0.2)
+                                        box-shadow: inset 0 0 0 100px rgba(0, 0, 0, 0.2);
+                                    }
+                                    &:focus {
+                                        outline: none;
                                     }
                                     width: 100%;
                                     background: $color-brown-3;

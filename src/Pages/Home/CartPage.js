@@ -42,6 +42,10 @@ const Cart = (props) => {
     return result;
   };
 
+  let renderCartResult = () => {
+    return <CartResult products={cartList} />;
+  };
+
   return (
     <section className="viewCart">
       <div className="viewCart__content">
@@ -73,12 +77,12 @@ const Cart = (props) => {
             <div className="form-pay">
               <div className="cart-totals">
                 <p>Tổng số lượng</p>
-                <CartResult />
+                {renderCartResult()}
                 <div className="procced-with-payment">
-                  <a className="btn-payment" href>
+                  <NavLink exact to="/payment" className="btn-payment">
                     {" "}
                     Tiến hành thanh toán
-                  </a>
+                  </NavLink>
                 </div>
               </div>
             </div>

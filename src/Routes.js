@@ -3,6 +3,7 @@ import AdminPage from "./Pages/Admin/AdminPage";
 import CartPage from "./Pages/Home/CartPage";
 import CategoryPage from "./Pages/Home/CategoryPage";
 import HomePage from "./Pages/Home/HomePage";
+import PaymentPage from "./Pages/Home/PaymentPage";
 import NotFoundPage from "./Pages/NotFondPage/NotFoundPage";
 
 const Routes = [
@@ -15,6 +16,11 @@ const Routes = [
     path: "/cart",
     exact: false,
     main: () => <CartPage />,
+  },
+  {
+    path: "/payment",
+    exact: false,
+    main: () => <PaymentPage />,
   },
   {
     path: "/admin",

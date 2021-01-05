@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 import React, { Fragment, useEffect } from "react";
-import ProductItem from "../../Components/ProductItem";
+import ProductItem from "../../Components/Home/ProductItem";
+import SectionCarousel from "../../Components/Home/SectionCarousel";
 import { actionFetchProductsRequest } from "../../Redux/Actions/ProductAction";
-import { SectionCarousel } from "./SectionCarousel";
 import { ADD_PRODUCT_TO_CART } from "../../Redux/Types/ActionTypes";
-import {CreateActionADD_UPDATE } from "../../Redux/Actions/CreateAction";
+import { CreateActionADD_UPDATE } from "../../Redux/Actions/CreateAction";
 
 const HomePage = (props) => {
   let { products } = props;
@@ -35,11 +35,19 @@ const HomePage = (props) => {
     }
     return result;
   };
+  
   let showCategory = (products) => {
     let result;
     if (products.length > 0) {
       result = products.map((product, index) => {
-        return <ProductItem key={index} product={product} index={index} />;
+        return (
+          <ProductItem
+            key={index}
+            product={product}
+            index={index}
+            onAddProductToCart={onAddProductToCart}
+          />
+        );
       });
     }
     return result;

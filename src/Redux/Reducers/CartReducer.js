@@ -56,7 +56,6 @@ const CartReducer = (state = initialState, action) => {
       return [...state];
     }
     case UPDATE_PRODUCT_IN_CART: {
-      console.log(action);
       index = findProductInCart(action.param1, state);
       if (index !== -1) {
         state[index].quantity = action.param2;

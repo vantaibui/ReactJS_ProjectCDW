@@ -1,7 +1,7 @@
 import React from "react";
-import CarouselItem from "../../Components/CarouselItem";
+import CarouselItem from "../CarouselItem";
 
-export const SectionCarousel = (props) => {
+const SectionCarousel = (props) => {
   let { products } = props;
 
   let renderCarouselItem = (products) => {
@@ -83,3 +83,5 @@ export const SectionCarousel = (props) => {
     </section>
   );
 };
+
+export default SectionCarousel;

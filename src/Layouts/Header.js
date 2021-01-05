@@ -47,6 +47,19 @@ const Header = (props) => {
     return result;
   };
 
+  let showProductSubTotal = (products) => {
+    let total = 0;
+    if (products.length > 0) {
+      let result = products.map((product) => {
+        return parseFloat(product.product.product_price) * product?.quantity;
+      });
+      for (const iterator of result) {
+        total += iterator;
+      }
+    }
+    return total;
+  };
+
   let showMenus = (Menus) => {
     let result;
     if (Menus.length > 0) {
@@ -107,26 +120,13 @@ const Header = (props) => {
                     <i className="fa fa-cart-plus cart--modifier" />{" "}
                   </NavLink>
 
-                  {renderCartItem(cartList)}
-
-                  {/* <div className="menu-cart-description">
-                    <ul className="menu-ul border-bottom">
-                      <li className="menu-li">
-                        <a className="image-product" href>
-                          <img src="./images/product-02.png" alt="abc" />
-                          <span> Classico 3</span>
-                        </a>
-                        <span className="quantity-product">
-                          1 x <span className="amount">700,000</span>
-                          <span className="currency">₫</span>
-                        </span>
-                      </li>
-                    </ul>
+                  <div className="menu-cart-description">
+                    {renderCartItem(cartList)}
                     <p className="total-cart-description border-bottom">
                       <strong>Tổng phụ:</strong>
-                      <span className="amount">
-                        700,000
-                        <span>₫</span>
+                      <span className="amount ml-1">
+                        {showProductSubTotal(cartList)}
+                        <span className="ml-1">₫</span>
                       </span>
                     </p>
                     <p className="button-cart-desciption">
@@ -137,11 +137,15 @@ const Header = (props) => {
                       >
                         Xem giỏ hàng
                       </NavLink>
-                      <NavLink exact to="/payment" className="button button-pay">
+                      <NavLink
+                        exact
+                        to="/payment"
+                        className="button button-pay"
+                      >
                         Thanh toán
                       </NavLink>
                     </p>
-                  </div> */}
+                  </div>
                 </li>
               </ul>
             </div>

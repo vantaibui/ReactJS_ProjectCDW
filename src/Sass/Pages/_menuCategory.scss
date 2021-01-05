@@ -50,9 +50,9 @@
                             border: 1px solid $color-white-2;
                             padding-right: 20px;
                             height: 35px;
-                            @include text($color-black-0, $fs-0, $fw-bold);
+                            @include text($color-black-2, $fs-0, $fw-medium);
                             option {
-                                @include text($color-black-0, $fs-0, $fw-bold);
+                                @include text($color-black-2, $fs-0, $fw-medium);
                             }
                         }
                     }

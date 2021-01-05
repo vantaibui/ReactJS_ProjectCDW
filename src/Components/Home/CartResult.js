@@ -1,6 +1,21 @@
 import React from "react";
 
-const CartResult = () => {
+const CartResult = (props) => {
+  let { products } = props;
+
+  let showProductSubTotal = (products) => {
+    let total = 0;
+    if (products.length > 0) {
+      let result = products.map((product) => {
+        return parseFloat(product.product.product_price) * product?.quantity;
+      });
+      for (const iterator of result) {
+        total += iterator;
+      }
+    }
+    return total;
+  };
+
   return (
     <table className="table-total">
       <tbody>
@@ -8,7 +23,7 @@ const CartResult = () => {
           <th>Tổng phụ</th>
           <td>
             <span>
-              1,400,000 <span>₫</span>
+              {showProductSubTotal(products)} <span>₫</span>
             </span>
           </td>
         </tr>
@@ -83,7 +98,7 @@ const CartResult = () => {
           <th>Tổng</th>
           <td>
             <span>
-              1,400,000 <span>₫</span>
+              {showProductSubTotal(products)} <span>₫</span>
             </span>
           </td>
         </tr>
