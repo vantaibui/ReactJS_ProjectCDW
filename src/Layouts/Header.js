@@ -1,6 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 import { NavLink, Route } from "react-router-dom";
 import FormSearch from "../Components/FormSearch";
+import CartItemHeader from "../Components/Home/CartItemHeader";
 
 const Menus = [
   { label: "Trang chủ", to: "/", exact: true },
@@ -30,7 +32,21 @@ const MenuLink = ({ label, to, activeOnlyWhenExact }) => {
   );
 };
 
-function Header() {
+const Header = (props) => {
+  let { cartList } = props;
+
+  let renderCartItem = (products) => {
+    let result;
+    if (products.length > 0) {
+      result = products.map((productItem, index) => {
+        return (
+          <CartItemHeader key={index} productItem={productItem} index={index} />
+        );
+      });
+    }
+    return result;
+  };
+
   let showMenus = (Menus) => {
     let result;
     if (Menus.length > 0) {
@@ -71,7 +87,7 @@ function Header() {
       <div className="headerLogo">
         <div className="row row--modifier headerLogo__content">
           <div className="col-3 col--modifier searchLeft">
-            <NavLink to="/">
+            <NavLink exact to="/">
               <img className="logo" src="./images/logo-mona.png" alt="logo" />
             </NavLink>
           </div>
@@ -87,10 +103,13 @@ function Header() {
                   </a>
                 </li>
                 <li className="menu-li menu-li-cart-description">
-                  <a href="#">
+                  <NavLink exact to="/cart">
                     <i className="fa fa-cart-plus cart--modifier" />{" "}
-                  </a>
-                  <div className="menu-cart-description">
+                  </NavLink>
+
+                  {renderCartItem(cartList)}
+
+                  {/* <div className="menu-cart-description">
                     <ul className="menu-ul border-bottom">
                       <li className="menu-li">
                         <a className="image-product" href>
@@ -111,14 +130,18 @@ function Header() {
                       </span>
                     </p>
                     <p className="button-cart-desciption">
-                      <a className="button button-view-cart" href="#">
+                      <NavLink
+                        exact
+                        to="/cart"
+                        className="button button-view-cart"
+                      >
                         Xem giỏ hàng
-                      </a>
-                      <a className="button button-pay" href="#">
+                      </NavLink>
+                      <NavLink exact to="/payment" className="button button-pay">
                         Thanh toán
-                      </a>
+                      </NavLink>
                     </p>
-                  </div>
+                  </div> */}
                 </li>
               </ul>
             </div>
@@ -148,6 +171,12 @@ function Header() {
       </div>
     </header>
   );
-}
+};
 
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    cartList: state.CartReducer,
+  };
+};
+
+export default connect(mapStateToProps, null)(Header);

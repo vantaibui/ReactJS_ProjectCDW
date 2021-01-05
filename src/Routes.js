@@ -1,6 +1,7 @@
 import React from "react";
-import  AdminPage  from "./Pages/Admin/AdminPage";
-import  CategoryPage  from "./Pages/Home/CategoryPage";
+import AdminPage from "./Pages/Admin/AdminPage";
+import CartPage from "./Pages/Home/CartPage";
+import CategoryPage from "./Pages/Home/CategoryPage";
 import HomePage from "./Pages/Home/HomePage";
 import NotFoundPage from "./Pages/NotFondPage/NotFoundPage";
 
@@ -11,8 +12,13 @@ const Routes = [
     main: () => <HomePage />,
   },
   {
+    path: "/cart",
+    exact: false,
+    main: () => <CartPage />,
+  },
+  {
     path: "/admin",
-    exact: true,
+    exact: false,
     main: () => <AdminPage />,
   },
   {
@@ -22,6 +28,5 @@ const Routes = [
   },
   { path: "", exact: false, main: () => <NotFoundPage /> },
 ];
-
 
 export default Routes;

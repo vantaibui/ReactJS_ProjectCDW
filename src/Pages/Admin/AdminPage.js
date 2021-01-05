@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Control } from "../../Components/Admin/Control";
-import { Form } from "../../Components/Admin/Form";
-import ProductItem from "../../Components/Admin/ProductItem";
-import ProductList from "../../Components/Admin/ProductList";
-
 import {
   actionDeleteProductRequest,
   actionFetchProductsRequest,
 } from "../../Redux/Actions/ProductAction";
+import TaskForm from "../../Components/Admin/TaskForm";
+import ProductItem from "../../Components/Admin/ProductItem";
+import ProductList from "../../Components/Admin/ProductList";
+import Control from "../../Components/Admin/Control";
 
 const AdminPage = (props) => {
   let { products } = props;
@@ -25,7 +24,14 @@ const AdminPage = (props) => {
     let result;
     if (products.length > 0) {
       result = products.map((product, index) => {
-        return <ProductItem key={index} product={product} index={index} onDeleteProduct={onDeleteProduct} />;
+        return (
+          <ProductItem
+            key={index}
+            product={product}
+            index={index}
+            onDeleteProduct={onDeleteProduct}
+          />
+        );
       });
     }
     return result;
@@ -39,7 +45,7 @@ const AdminPage = (props) => {
       </div>
       <div className="row">
         <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-          <Form />
+          <TaskForm />
         </div>
         <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
           <button type="button" className="btn btn-primary">

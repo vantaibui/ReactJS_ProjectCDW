@@ -118,6 +118,9 @@
                             }
                             .addInCart {
                                 .btnAdd {
+                                    &:focus {
+                                        outline: none;
+                                    }
                                     margin-top: 10px;
                                     padding: 6px 18px;
                                     background: $color-pink-0;

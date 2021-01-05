@@ -1,7 +1,12 @@
-// import React from "react";
+import React from "react";
 
 const ProductItem = (props) => {
-   let {product} = props;
+  let { product } = props;
+
+  let onAddProductToCart = (product) => {
+    props.onAddProductToCart(product);
+  };
+
   return (
     <div className="product">
       <div className="box">
@@ -33,14 +38,19 @@ const ProductItem = (props) => {
             </ins>
           </div>
           <div className="addInCart">
-            <a href className="btnAdd">
+            <button
+              className="btnAdd"
+              onClick={() => {
+                onAddProductToCart(product);
+              }}
+            >
               thêm vào giỏ
-            </a>
+            </button>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default ProductItem;

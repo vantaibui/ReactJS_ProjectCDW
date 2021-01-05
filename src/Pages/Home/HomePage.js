@@ -3,6 +3,8 @@ import React, { Fragment, useEffect } from "react";
 import ProductItem from "../../Components/ProductItem";
 import { actionFetchProductsRequest } from "../../Redux/Actions/ProductAction";
 import { SectionCarousel } from "./SectionCarousel";
+import { ADD_PRODUCT_TO_CART } from "../../Redux/Types/ActionTypes";
+import {CreateActionADD_UPDATE } from "../../Redux/Actions/CreateAction";
 
 const HomePage = (props) => {
   let { products } = props;
@@ -11,13 +13,22 @@ const HomePage = (props) => {
     props.fetchAllProducts();
   }, []);
 
+  let onAddProductToCart = (product) => {
+    props.onAddProductToCart(product);
+  };
+
   let sellingProducts = (products) => {
     let result;
     if (products.length > 0) {
       result = products.map((product, index) => {
         return (
           <div key={index} className="col-3 col-item">
-            <ProductItem key={index} product={product} index={index} />
+            <ProductItem
+              key={index}
+              product={product}
+              index={index}
+              onAddProductToCart={onAddProductToCart}
+            />
           </div>
         );
       });
@@ -472,6 +483,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchAllProducts: () => {
       dispatch(actionFetchProductsRequest());
+    },
+    onAddProductToCart: (product) => {
+      dispatch(CreateActionADD_UPDATE(ADD_PRODUCT_TO_CART, product, 1));
     },
   };
 };

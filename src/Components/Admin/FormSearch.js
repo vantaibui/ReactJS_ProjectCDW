@@ -1,6 +1,6 @@
 import React from "react";
 
-export const FormSearch = () => {
+const FormSearch = () => {
   return (
     <div className="input-group">
       <input
@@ -17,3 +17,5 @@ export const FormSearch = () => {
     </div>
   );
 };
+
+export default FormSearch;
