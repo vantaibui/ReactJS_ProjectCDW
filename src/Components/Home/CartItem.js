@@ -18,6 +18,14 @@ const CartItem = (props) => {
     }
   };
 
+  let renderImageProduct = (product) => {
+    let result;
+    result = product.images.map((image) => {
+      return image.link;
+    });
+    return result;
+  };
+
   return (
     <tr className="product-item border-bottom">
       <td className="product-remove">
@@ -31,15 +39,15 @@ const CartItem = (props) => {
       </td>
       <td className="product-thumbnail">
         <a href="detail.html">
-          <img src={productItem?.product.product_image} alt="abc" />
+          <img src={renderImageProduct(productItem?.product)} alt="abc" />
         </a>
       </td>
       <td className="product-name">
-        <span> {productItem?.product.product_name} </span>
+        <span> {productItem?.product.name} </span>
       </td>
       <td className="product-price">
         <span className="amount">
-          {productItem?.product.product_price}
+          {productItem?.product.price}
           <span className="currency ml-1">₫</span>
         </span>
       </td>
@@ -73,7 +81,7 @@ const CartItem = (props) => {
       <td className="product-subtotal">
         <span className="amount">
           {showProductSubTotal(
-            productItem?.product.product_price,
+            productItem?.product.price,
             productItem?.quantity
           )}
           <span className="currency ml-1">₫</span>

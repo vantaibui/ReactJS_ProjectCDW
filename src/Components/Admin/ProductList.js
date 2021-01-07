@@ -2,8 +2,8 @@ import React from "react";
 
 const ProductList = (props) => {
   return (
-    <table className="table table-bordered table-hover">
-      <thead>
+    <table className="table border">
+      <thead className="bg-primary">
         <tr>
           <th className="text-center">No.</th>
           <th className="text-center">Name</th>

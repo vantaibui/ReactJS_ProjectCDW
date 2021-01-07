@@ -6,14 +6,30 @@ export class ProductManagementService {
     return axios({
       method: "GET",
       url: `${domain}/products`,
+      // headers: {
+      //   "Access-Control-Allow-Origin": "*",
+      //   "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+      // }
     });
   };
+  addProduct = (product) => {
+    return axios({
+      method: "POST",
+      url: `${domain}/products`,
+      data: product,
+      // headers: {
+      //   Authorization: "Bearer " + localStorage.getItem(token),
+      // },
+    });
+  };
+
   deleteProduct = (id) => {
     return axios({
       method: "DELETE",
       url: `${domain}/products/${id}`,
       data: id,
       // headers: {
+      //   "Access-Control-Allow-Origin": "*",
       //   Authorization: "Bearer " + localStorage.getItem(token),
       // },
     });

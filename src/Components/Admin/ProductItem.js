@@ -11,14 +11,14 @@ const ProductItem = (props) => {
   };
 
   return (
-    <tr>
-      <td>{index + 1}</td>
-      <td>{product.product_name}</td>
-      <td className="text-center">5000000</td>
-      <td>dong ho nam</td>
-      <td>5</td>
-      <td>Dhn</td>
-      <td className="text-center">
+    <tr >
+      <td className="border">{index + 1}</td>
+      <td className="border">{product.name}</td>
+      <td className="text-center border">{product.price}</td>
+      <td className="border">{product.description}</td>
+      <td className="border">{product.evaluate}</td>
+      <td className="border">{product.category}</td>
+      <td className="text-center border">
         <button type="button" className="btn btn-warning">
           <i className="fa fa-edit mr-1"></i>
           Sửa
@@ -38,6 +38,5 @@ const ProductItem = (props) => {
     </tr>
   );
 };
-
 
 export default ProductItem;

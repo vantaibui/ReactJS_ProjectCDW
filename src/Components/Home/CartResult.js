@@ -7,7 +7,7 @@ const CartResult = (props) => {
     let total = 0;
     if (products.length > 0) {
       let result = products.map((product) => {
-        return parseFloat(product.product.product_price) * product?.quantity;
+        return parseFloat(product.product.price) * product?.quantity;
       });
       for (const iterator of result) {
         total += iterator;

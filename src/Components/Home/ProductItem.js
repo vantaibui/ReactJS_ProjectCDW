@@ -7,13 +7,21 @@ const ProductItem = (props) => {
     props.onAddProductToCart(product);
   };
 
+  let renderImageProduct = (product) => {
+    let result;
+    result = product.images.map((image, index) => {
+      return image.link;
+    });
+    return result;
+  };
+
   return (
     <div className="product">
       <div className="box">
         <div className="box-image">
           <div className="image-product">
             <a href="true">
-              <img src={product.product_image} alt="product" />
+              <img src={renderImageProduct(product)} alt="product" />
             </a>
           </div>
           <div className="image-favorites">
@@ -28,12 +36,12 @@ const ProductItem = (props) => {
         <div className="box-text">
           <div className="title">
             <p className="product-name">
-              <a href>{product.product_name}</a>
+              <a href>{product.name}</a>
             </p>
           </div>
           <div className="price">
             <ins>
-              <span className="amount">{product.product_price}</span>
+              <span className="amount">{product.price}</span>
               <span className="currency">₫</span>
             </ins>
           </div>

@@ -1,4 +1,8 @@
-import { DELETE_PRODUCT, FETCH_PRODUCTS } from "../Types/ActionTypes";
+import {
+  ADD_PRODUCT,
+  DELETE_PRODUCT,
+  FETCH_PRODUCTS,
+} from "../Types/ActionTypes";
 
 let initialState = [];
 
@@ -16,6 +20,10 @@ const ProductReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PRODUCTS: {
       state = action.payLoad;
+      return [...state];
+    }
+    case ADD_PRODUCT: {
+      state.push(action.payLoad);
       return [...state];
     }
     case DELETE_PRODUCT: {

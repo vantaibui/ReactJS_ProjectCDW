@@ -5,6 +5,7 @@ import SectionCarousel from "../../Components/Home/SectionCarousel";
 import { actionFetchProductsRequest } from "../../Redux/Actions/ProductAction";
 import { ADD_PRODUCT_TO_CART } from "../../Redux/Types/ActionTypes";
 import { CreateActionADD_UPDATE } from "../../Redux/Actions/CreateAction";
+import Header from "../../Layouts/Header";
 
 const HomePage = (props) => {
   let { products } = props;
@@ -35,7 +36,7 @@ const HomePage = (props) => {
     }
     return result;
   };
-  
+
   let showCategory = (products) => {
     let result;
     if (products.length > 0) {
@@ -54,6 +55,7 @@ const HomePage = (props) => {
   };
   return (
     <Fragment>
+      {/* <Header /> */}
       {/* Carousel */}
       <SectionCarousel products={products} />
       {/* Banner */}
