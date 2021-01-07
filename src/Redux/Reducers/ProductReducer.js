@@ -23,10 +23,27 @@ const ProductReducer = (state = initialState, action) => {
       return [...state];
     }
     case ADD_PRODUCT: {
+      console.log(state);
+      // let newProduct = {
+      //   name: action.payLoad.name,
+      //   price: action.payLoad.price,
+      //   description: action.payLoad.description,
+      //   evaluate: action.payLoad.evaluate,
+      //   category: action.payLoad.category,
+      //   images: [
+      //     {
+      //       link: action.payLoad.image,
+      //       description: "Image of product: " + action.payLoad.name,
+      //     },
+      //   ],
+      // };
+      // console.log(newProduct);
       state.push(action.payLoad);
+      // state.push(newProduct);
       return [...state];
     }
     case DELETE_PRODUCT: {
+      console.log(state);
       let index = findIndex(action.payLoad, state);
       if (index !== -1) {
         state.splice(index, 1);

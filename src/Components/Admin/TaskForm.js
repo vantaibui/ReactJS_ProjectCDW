@@ -5,7 +5,7 @@ import { actionAddProductRequest } from "../../Redux/Actions/ProductAction";
 
 const TaskForm = (props) => {
   let handleSubmit = (values) => {
-    console.log(values);
+    // console.log(values);
     props.onAddProduct(values);
     document.getElementById("btn-reset").click();
   };
@@ -15,7 +15,7 @@ const TaskForm = (props) => {
       <Formik
         initialValues={{
           name: "",
-          images: { link: "", description: "" },
+          image: "",
           description: "",
           price: 0,
           evaluate: 0,
@@ -83,7 +83,7 @@ const TaskForm = (props) => {
                   <label>Image :</label>
                   <Field
                     onChange={formikProps.handleChange}
-                    name="link"
+                    name="image"
                     type="text"
                     className="form-control"
                   />
