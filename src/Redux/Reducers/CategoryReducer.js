@@ -1,7 +1,8 @@
 import {
-  ADD_PRODUCT,
-  DELETE_PRODUCT,
-  FETCH_PRODUCTS,
+  ADD_CATEGORY,
+  DELETE_CATEGORY,
+  FETCH_CATEGORIES,
+  UPDATE_CATEGORY,
 } from "../Types/ActionTypes";
 
 let initialState = [];
@@ -16,26 +17,28 @@ let findIndex = (id, list) => {
   return result;
 };
 
-const ProductReducer = (state = initialState, action) => {
+const CategoryReducer = (state = initialState, action) => {
+  let index = -1;
   switch (action.type) {
-    case FETCH_PRODUCTS: {
+    case FETCH_CATEGORIES: {
       state = action.payLoad;
       return [...state];
     }
-    case ADD_PRODUCT: {
+    case ADD_CATEGORY: {
       state.push(action.payLoad);
       return [...state];
     }
-    case DELETE_PRODUCT: {
-      let index = findIndex(action.payLoad, state);
+    case DELETE_CATEGORY: {
+      index = findIndex(action.payLoad, state);
       if (index !== -1) {
         state.splice(index, 1);
       }
       return [...state];
     }
+
     default:
       return [...state];
   }
 };
 
-export default ProductReducer;
+export default CategoryReducer;

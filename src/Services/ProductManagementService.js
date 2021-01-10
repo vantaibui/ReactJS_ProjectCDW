@@ -6,10 +6,6 @@ export class ProductManagementService {
     return axios({
       method: "GET",
       url: `${domain}/products`,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-      }
     });
   };
   addProduct = (product) => {

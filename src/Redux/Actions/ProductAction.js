@@ -11,7 +11,6 @@ export const actionFetchProductsRequest = () => {
     return productManagementService
       .fetchProductList()
       .then((result) => {
-        console.log(result.data);
         dispatch(CreateAction(FETCH_PRODUCTS, result.data));
       })
       .catch((error) => {
@@ -21,7 +20,6 @@ export const actionFetchProductsRequest = () => {
 };
 
 export const actionAddProductRequest = (product) => {
-  console.log(product);
   let newProduct = {
     name: product.name,
     price: product.price,
@@ -35,14 +33,13 @@ export const actionAddProductRequest = (product) => {
       },
     ],
   };
-  console.log(newProduct);
   return (dispatch) => {
     return productManagementService
-      .addProduct(product)
+      .addProduct(newProduct)
       .then((result) => {
         dispatch(
-          CreateAction(ADD_PRODUCT, result.data),
-          actionFetchProductsRequest()
+          CreateAction(ADD_PRODUCT, result.data)
+          // actionFetchProductsRequest()
         );
       })
       .catch((error) => {

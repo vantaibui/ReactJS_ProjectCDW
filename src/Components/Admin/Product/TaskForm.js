@@ -1,11 +1,15 @@
 import { Field, Form, Formik } from "formik";
 import React from "react";
 import { connect } from "react-redux";
-import { actionAddProductRequest } from "../../Redux/Actions/ProductAction";
+import { closeFormRequest } from "../../../Redux/Actions/FormAction";
+import { actionAddProductRequest } from "../../../Redux/Actions/ProductAction";
 
 const TaskForm = (props) => {
+  let onCloseForm = () => {
+    props.onCloseForm();
+  };
+
   let handleSubmit = (values) => {
-    // console.log(values);
     props.onAddProduct(values);
     document.getElementById("btn-reset").click();
   };
@@ -23,11 +27,19 @@ const TaskForm = (props) => {
         }}
         onSubmit={handleSubmit}
         render={(formikProps) => (
-          <div className="panel panel-warning">
-            <div className="panel-heading">
-              <h3 className="panel-title">Thêm Sản Phẩm</h3>
+          <div className="card">
+            <div className="card-header text-center d-flex justify-content-center align-items-center">
+              <h3 className="card-title">Thêm Sản Phẩm</h3>
+              <button
+                className="btn btn-danger ml-1 p-1 px-2"
+                onClick={() => {
+                  onCloseForm();
+                }}
+              >
+                X
+              </button>
             </div>
-            <div className="panel-body border p-3">
+            <div className="card-body border p-3">
               <Form>
                 <div className="form-group">
                   <label>Name :</label>
@@ -43,7 +55,7 @@ const TaskForm = (props) => {
                   <Field
                     onChange={formikProps.handleChange}
                     name="price"
-                    type="text"
+                    type="number"
                     className="form-control"
                   />
                 </div>
@@ -138,6 +150,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onAddProduct: (product) => {
       dispatch(actionAddProductRequest(product));
+    },
+    onCloseForm: () => {
+      dispatch(closeFormRequest());
     },
   };
 };

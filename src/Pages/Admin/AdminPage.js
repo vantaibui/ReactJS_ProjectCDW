@@ -85,9 +85,11 @@
 
 import React from "react";
 import ProductManagementPage from "./ProductManagementPage";
+import CategoryManagementPage from "./CategoryManagementPage";
 
 const AdminPage = () => {
-  return <ProductManagementPage />;
+  // return <ProductManagementPage />;
+  return <CategoryManagementPage />;
 };
 
 export default AdminPage;

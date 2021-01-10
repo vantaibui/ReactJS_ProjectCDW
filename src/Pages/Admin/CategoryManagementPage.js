@@ -1,53 +1,43 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import {
-  actionDeleteProductRequest,
-  actionFetchProductsRequest,
-} from "../../Redux/Actions/ProductAction";
-import TaskForm from "../../Components/Admin/Product/TaskForm";
-import ProductItem from "../../Components/Admin/Product/ProductItem";
-import ProductList from "../../Components/Admin/Product/ProductList";
-import Control from "../../Components/Admin/Control";
+import TaskForm from "../../Components/Admin/Category/TaskForm";
+import CategoryList from "../../Components/Admin/Category/CategoryList";
+import CategoryItem from "../../Components/Admin/Category/CategoryItem";
 import { toggleFormRequest } from "../../Redux/Actions/FormAction";
+import { actionFetchCategoriesRequest } from "../../Redux/Actions/CategoryAction";
 
-const ProductManagementPage = (props) => {
-  let { products, isDisplayForm } = props;
+const CategoryManagementPage = (props) => {
+  let { categories, isDisplayForm, editingCategory } = props;
 
   useEffect(() => {
-    props.fetchAllProducts();
+    props.fetchAllCategories();
   }, []);
 
   let onToggleForm = () => {
     props.onToggleForm();
   };
 
-  let onDeleteProduct = (id) => {
-    props.onDeleteProduct(id);
-  };
-
-  let renderProductItem = (products) => {
+  let renderCategoryItem = (categories) => {
     let result;
-    if (products.length > 0) {
-      result = products.map((product, index) => {
-        return (
-          <ProductItem
-            key={index}
-            product={product}
-            index={index}
-            onDeleteProduct={onDeleteProduct}
-          />
-        );
+    if (categories.length > 0) {
+      result = categories.map((category, index) => {
+        return <CategoryItem key={index} category={category} index={index} />;
       });
     }
     return result;
   };
 
-  let elementForm = isDisplayForm === true ? <TaskForm /> : "";
+  let elementForm =
+    isDisplayForm === true ? (
+      <TaskForm />
+    ) : (
+      ""
+    );
 
   return (
     <div className="container-fluid px-5">
       <div className="text-center">
-        <h1>Quản Lý Sản Phẩm</h1>
+        <h1>Quản Lý Danh Mục</h1>
         <hr />
       </div>
       <div className="row">
@@ -73,12 +63,11 @@ const ProductManagementPage = (props) => {
             }}
           >
             <span className="fa fa-plus mr-2" />
-            Thêm Sản Phẩm
+            Thêm Danh Mục
           </button>
-          <Control />
           <div className="row mt-2">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <ProductList>{renderProductItem(products)}</ProductList>
+              <CategoryList>{renderCategoryItem(categories)}</CategoryList>
             </div>
           </div>
         </div>
@@ -89,18 +78,16 @@ const ProductManagementPage = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    products: state.ProductReducer,
+    categories: state.CategoryReducer,
     isDisplayForm: state.IsDisplayForm,
+    editingCategory: state.EditingReducer,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAllProducts: () => {
-      dispatch(actionFetchProductsRequest());
-    },
-    onDeleteProduct: (id) => {
-      dispatch(actionDeleteProductRequest(id));
+    fetchAllCategories: () => {
+      dispatch(actionFetchCategoriesRequest());
     },
     onToggleForm: () => {
       dispatch(toggleFormRequest());
@@ -111,4 +98,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProductManagementPage);
+)(CategoryManagementPage);
