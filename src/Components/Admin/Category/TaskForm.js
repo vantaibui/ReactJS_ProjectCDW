@@ -5,7 +5,7 @@ import { actionAddCategoryRequest } from "../../../Redux/Actions/CategoryAction"
 import { closeFormRequest } from "../../../Redux/Actions/FormAction";
 
 export const TaskForm = (props) => {
-    const [initialValue, setInitialValue] = useState({
+    const [initialStateValue, setInitialStateValue] = useState({
         id: "",
         name: "Men",
         description: "",
@@ -13,9 +13,15 @@ export const TaskForm = (props) => {
 
     let { editingCategory } = props;
 
-    console.log(editingCategory);
-
     let onCloseForm = () => {
+        props.onCloseForm();
+    };
+
+    let onClear = () => {
+        setInitialStateValue({
+            name: "Men",
+            description: "",
+        });
         props.onCloseForm();
     };
 
@@ -23,37 +29,21 @@ export const TaskForm = (props) => {
         props.onAddCategory(values);
         document.getElementById("btn-reset").click();
     };
-    useEffect(() => {
-        console.log("Props received: " + props.editingCategory.id);
-        if (props && props.editingCategory) {
-            setInitialValue({
-                id: props.editingCategory.id,
-                name: props.editingCategory.name,
-                description: props.editingCategory.description,
-            });
-        } else if (!props.editingCategory) {
-            setInitialValue({
-                id: "",
-                name: "Men",
-                description: "",
-            });
-        }
-    }, []);
 
     let renderForm = () => {
-      console.log(initialValue.id);
         return (
             <Formik
-                initialValues={initialValue}
+                initialValues={initialStateValue}
                 onSubmit={handleSubmit}
                 render={(formikProps) => (
                     <div className="card">
                         <div className="card-header text-center d-flex justify-content-center align-items-center">
-                            <h3 className="card-title">
-                                {initialValue.id !== ""
+                            <h3 className="card-title">Thêm Danh Mục</h3>
+                            {/* <h3 className="card-title">
+                                {editingCategory.id !== ""
                                     ? "Thêm Danh Mục"
                                     : "Cập Nhật Danh Mục"}
-                            </h3>
+                            </h3> */}
                             <button
                                 className="btn btn-danger ml-1 p-1 px-2"
                                 onClick={() => {
@@ -69,7 +59,7 @@ export const TaskForm = (props) => {
                                     <label>Name :</label>
                                     <Field
                                         onChange={formikProps.handleChange}
-                                        value={initialValue.name || ""}
+                                        // value={formikProps.values.name}
                                         name="name"
                                         as="select"
                                         className="form-control"
@@ -85,7 +75,9 @@ export const TaskForm = (props) => {
                                     <label>Description :</label>
                                     <Field
                                         onChange={formikProps.handleChange}
-                                        value={initialValue.description || ""}
+                                        value={
+                                            formikProps.values.description || ""
+                                        }
                                         name="description"
                                         type="text"
                                         className="form-control"
@@ -110,8 +102,11 @@ export const TaskForm = (props) => {
                                     </button>
                                     &nbsp;
                                     <button
-                                        type="submit"
+                                        type="button"
                                         className="btn btn-danger"
+                                        onClick={() => {
+                                            onClear();
+                                        }}
                                     >
                                         <i className="fa fa-times-circle mr-1"></i>
                                         Hủy Bỏ

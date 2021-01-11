@@ -10,7 +10,11 @@
                 margin: 0;
                 line-height: 1.6;
                 @include text($color-black-3, $fs-1, $fw-medium);
-                a {
+                button {
+                    margin-left: 5px;
+                    background: none;
+                    border: none;
+                    outline: none;
                     text-decoration: none;
                     @include text($color-black-3, $fs-1, $fw-medium);
                 }

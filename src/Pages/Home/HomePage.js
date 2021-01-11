@@ -113,7 +113,7 @@ const HomePage = (props) => {
       <section className="sellingProducts">
         <div className="sellingProducts__content">
           <h2 className="categoryTitle">Sản phẩm bán chạy</h2>
-          <div className="row listProduct">{sellingProducts(products)}</div>
+          <div className="row listProduct listProduct-slick-slider">{sellingProducts(products)}</div>
         </div>
       </section>
 
