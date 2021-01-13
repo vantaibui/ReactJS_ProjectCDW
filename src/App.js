@@ -4,6 +4,8 @@ import "./App.scss";
 import Header from "./Layouts/Header";
 import Footer from "./Layouts/Footer";
 import Routes from "./Routes";
+import HomeTemplate from "./Templates/HomeTemplate";
+import HomePage from "./Pages/Home/HomePage";
 
 function App() {
     let showContentMenu = (Routes) => {
@@ -27,10 +29,12 @@ function App() {
             <Fragment>
                 <Header />
                 {showContentMenu(Routes)}
-                <Footer />
+                {/* <Footer /> */}
+
             </Fragment>
         </BrowserRouter>
     );
 }
 
 export default App;
+

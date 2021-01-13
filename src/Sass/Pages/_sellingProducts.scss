@@ -1,136 +1,137 @@
 .sellingProducts {
     max-width: 1230px;
-    padding: 60px 15px 30px;
+    padding: 60px 0 30px;
     width: 100%;
     margin: auto;
     .sellingProducts__content {
+        position: relative;
         .categoryTitle {
             @include text($color-black-1, 24px, $fw-bold + 100);
             line-height: 1.3;
             margin-bottom: 12px;
         }
-        .listProduct {
-            .col-item {
-                padding: 0 15px 30px;
-                .product {
-                    height: 100%;
-                    margin: 5px auto;
-                    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
-                    .box {
-                        .box-image {
-                            transition: all 2s;
-                            &:hover {
-                                .image-favorites {
-                                    .circle-icon {
-                                        opacity: 1;
-                                    }
-                                }
-                            }
-                            position: relative;
-                            border-bottom: 1px solid $color-white-2;
-                            margin-bottom: 3%;
-                            .image-product {
-                                a {
-                                    img {
-                                        object-fit: contain;
-                                        object-position: center center;
-                                        vertical-align: middle;
-                                        transform: translateZ(0);
-                                        width: 100%;
-                                        min-height: 350px;
-                                        max-height: 350px;
-                                        height: 100%;
-                                    }
-                                }
-                            }
+        .col-item {
+            padding: 0 15px 30px;
+            .product {
+                width: 100%;
+                min-width: 200px;
+                height: 100%;
+                margin: 5px 0;
+                box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+                .box {
+                    .box-image {
+                        transition: all 2s;
+                        &:hover {
                             .image-favorites {
-                                position: absolute;
-                                top: 20%;
-                                left: 70%;
-                                transform: translate(70%, -50%);
-                                transition: all 5s;
                                 .circle-icon {
-                                    position: relative;
-                                    width: 40px;
-                                    height: 40px;
-                                    border: 2px solid $color-white-2;
-                                    border-radius: 50%;
-                                    opacity: 0;
-                                    i {
-                                        position: absolute;
-                                        top: 50%;
-                                        left: 50%;
-                                        transform: translate(-50%, -50%);
-                                        color: $color-white-2;
-                                    }
-                                }
-                                .favorite-title {
-                                    opacity: 0;
-                                    background: $color-black-0;
-                                    border-radius: 4px;
-                                    width: 45px;
-                                    max-height: 70px;
-                                    margin-top: 8px;
-                                    text-align: center;
-                                    a {
-                                        display: block;
-                                        text-decoration: none;
-                                        @include text($color-white-1, $fs-0, $fw-bold);
-                                    }
-                                }
-                                &:hover {
-                                    .circle-icon {
-                                        background: $color-red-0;
-                                        border: 1px solid $color-red-0;
-                                        i {
-                                            color: $color-white-0;
-                                        }
-                                    }
-                                    .favorite-title {
-                                        opacity: 1;
-                                    }
+                                    opacity: 1;
                                 }
                             }
                         }
-                        .box-text {
-                            text-align: center;
-                            padding: 10px 10px 20px;
-                            .title {
-                                .product-name {
-                                    margin: 1px 0;
-                                    a {
-                                        text-decoration: none;
-                                        text-transform: capitalize;
-                                        margin-top: 1px;
-                                        margin-bottom: 10px;
-                                        @include text($color-black-2, $fs-1, $fw-bold);
-                                    }
+                        position: relative;
+                        border-bottom: 1px solid $color-white-2;
+                        margin-bottom: 3%;
+                        .image-product {
+                            a {
+                                img {
+                                    object-fit: contain;
+                                    object-position: center center;
+                                    vertical-align: middle;
+                                    transform: translateZ(0);
+                                    width: 100%;
+                                    min-height: 350px;
+                                    max-height: 350px;
+                                    height: 100%;
                                 }
                             }
-                            .price {
-                                @include text($color-pink-0, $fs-0, $fw-bold);
-                                margin: 5px auto;
-                                ins {
-                                    text-decoration: none;
-                                    font-size: $fs-1;
-                                    margin-left: 4px;
+                        }
+                        .image-favorites {
+                            position: absolute;
+                            top: 20%;
+                            left: 70%;
+                            transform: translate(70%, -50%);
+                            transition: all 5s;
+                            .circle-icon {
+                                position: relative;
+                                width: 40px;
+                                height: 40px;
+                                border: 2px solid $color-white-2;
+                                border-radius: 50%;
+                                opacity: 0;
+                                i {
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%);
+                                    color: $color-white-2;
                                 }
                             }
-                            .addInCart {
-                                .btnAdd {
-                                    &:focus {
-                                        outline: none;
-                                    }
-                                    margin-top: 10px;
-                                    padding: 6px 18px;
-                                    background: $color-pink-0;
-                                    border: 1px solid rgba(0, 0, 0, 0.05);
-                                    text-transform: uppercase;
+                            .favorite-title {
+                                opacity: 0;
+                                background: $color-black-0;
+                                border-radius: 4px;
+                                width: 45px;
+                                max-height: 70px;
+                                margin-top: 8px;
+                                text-align: center;
+                                a {
+                                    display: block;
                                     text-decoration: none;
-                                    @include text($color-white-0, $fs-0 - 2, $fw-bold);
-                                    &:hover {
-                                        background: $color-brown-2;
+                                    @include text( $color-white-1, $fs-0, $fw-bold);
+                                }
+                            }
+                            &:hover {
+                                .circle-icon {
+                                    background: $color-red-0;
+                                    border: 1px solid $color-red-0;
+                                    i {
+                                        color: $color-white-0;
                                     }
+                                }
+                                .favorite-title {
+                                    opacity: 1;
+                                }
+                            }
+                        }
+                    }
+                    .box-text {
+                        text-align: center;
+                        padding: 10px 10px 20px;
+                        .title {
+                            .product-name {
+                                margin: 1px 0;
+                                a {
+                                    text-decoration: none;
+                                    text-transform: capitalize;
+                                    margin-top: 1px;
+                                    margin-bottom: 10px;
+                                    @include text( $color-black-2, $fs-1, $fw-bold);
+                                }
+                            }
+                        }
+                        .price {
+                            @include text($color-pink-0, $fs-0, $fw-bold);
+                            margin: 5px auto;
+                            ins {
+                                text-decoration: none;
+                                font-size: $fs-1;
+                                margin-left: 4px;
+                            }
+                        }
+                        .addInCart {
+                            .btnAdd {
+                                &:focus {
+                                    outline: none;
+                                }
+                                margin-top: 10px;
+                                padding: 6px 18px;
+                                background: $color-pink-0;
+                                border: 1px solid rgba(0, 0, 0, 0.05);
+                                text-transform: uppercase;
+                                text-decoration: none;
+                                @include text( $color-white-0, $fs-0 - 2, $fw-bold);
+                                &:hover {
+                                    background: $color-brown-2;
                                 }
                             }
                         }

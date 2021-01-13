@@ -3,6 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
 import { user_login } from "../../Configuration/Setting";
+import { actionLoginRequest } from "../../Redux/Actions/UserAction";
 
 const PaymentPage = (props) => {
     let { cartList } = props;
@@ -68,6 +69,8 @@ const PaymentPage = (props) => {
 
     let handleSubmit = (values) => {
         console.log(values);
+        props.onLogin(values);
+        document.getElementById("btn-reset").click();
     };
 
     let renderFormLogin = () => {
@@ -112,6 +115,13 @@ const PaymentPage = (props) => {
                         <p className="form-row">
                             <button type="submit" className="btn-login">
                                 Đăng nhập
+                            </button>
+                            <button
+                                type="reset"
+                                id="btn-reset"
+                                className="d-none"
+                            >
+                                Reset
                             </button>
                             <span className="input-remember-password">
                                 <input
@@ -158,37 +168,9 @@ const PaymentPage = (props) => {
                                     <div className="form-info-billing">
                                         <h3>Thông tin thanh toán</h3>
                                         <div className="customer-information">
-                                            <div className="form-row">
-                                                <div className="form-group col-md-6">
-                                                    <label htmlFor="inputFirstName">
-                                                        Họ{" "}
-                                                        <span className="required">
-                                                            *
-                                                        </span>
-                                                    </label>
-                                                    <input
-                                                        type="text"
-                                                        className="form-control"
-                                                        id="inputFirstName"
-                                                    />
-                                                </div>
-                                                <div className="form-group col-md-6">
-                                                    <label htmlFor="inputLastName">
-                                                        Tên{" "}
-                                                        <span className="required">
-                                                            *
-                                                        </span>
-                                                    </label>
-                                                    <input
-                                                        type="text"
-                                                        className="form-control"
-                                                        id="inputLastName"
-                                                    />
-                                                </div>
-                                            </div>
                                             <div className="form-group">
-                                                <label htmlFor="inputAddress">
-                                                    Địa chỉ{" "}
+                                                <label htmlFor="inputEmail">
+                                                    Tên đăng nhập{" "}
                                                     <span className="required">
                                                         *
                                                     </span>
@@ -196,20 +178,8 @@ const PaymentPage = (props) => {
                                                 <input
                                                     type="text"
                                                     className="form-control"
-                                                    id="inputAddress"
-                                                />
-                                            </div>
-                                            <div className="form-group">
-                                                <label htmlFor="inputPhoneNumber">
-                                                    Số điện thoại{" "}
-                                                    <span className="required">
-                                                        *
-                                                    </span>
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control"
-                                                    id="inputPhoneNumber"
+                                                    id="inputUsername"
+                                                    name="username"
                                                 />
                                             </div>
                                             <div className="form-group">
@@ -223,6 +193,35 @@ const PaymentPage = (props) => {
                                                     type="text"
                                                     className="form-control"
                                                     id="inputEmail"
+                                                    name="email"
+                                                />
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="inputAddress">
+                                                    Địa chỉ{" "}
+                                                    <span className="required">
+                                                        *
+                                                    </span>
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    id="inputAddress"
+                                                    name="address"
+                                                />
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="inputPhoneNumber">
+                                                    Số điện thoại{" "}
+                                                    <span className="required">
+                                                        *
+                                                    </span>
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    id="inputPhoneNumber"
+                                                    name="phone"
                                                 />
                                             </div>
                                         </div>
@@ -257,6 +256,7 @@ const PaymentPage = (props) => {
                                                     className="form-control"
                                                     id="inputCreatePassword"
                                                     placeholder="Mật khẩu"
+                                                    name="password"
                                                 />
                                             </div>
                                         </div>
@@ -340,4 +340,12 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, null)(PaymentPage);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onLogin: (account) => {
+            dispatch(actionLoginRequest(account));
+        },
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentPage);

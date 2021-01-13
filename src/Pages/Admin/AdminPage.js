@@ -88,8 +88,12 @@ import ProductManagementPage from "./ProductManagementPage";
 import CategoryManagementPage from "./CategoryManagementPage";
 
 const AdminPage = () => {
-  // return <ProductManagementPage />;
-  return <CategoryManagementPage />;
+    // return <ProductManagementPage />;
+    return (
+        <>
+            <ProductManagementPage /> <CategoryManagementPage />
+        </>
+    );
 };
 
 export default AdminPage;

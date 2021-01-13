@@ -1,0 +1,26 @@
+.slick-arrow {
+    position: absolute !important;
+    top: -5% !important;
+    width: 50px !important;
+    height: 50px !important;
+    opacity: 0.2 !important;
+    transition: all 1s !important;
+    &:hover {
+        color: $color-red-0 !important;
+        opacity: 1 !important;
+    }
+    &::before {
+        color: $color-brown-0 !important;
+        font-size: 30px !important;
+    }
+}
+
+.slick-next {
+    left: unset !important;
+    right: 1% !important;
+}
+
+.slick-prev {
+    left: unset !important;
+    right: 5% !important;
+}

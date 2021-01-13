@@ -4,12 +4,11 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import bgLogin from "../../Asserts/images/bg-login.jpg";
 import { user_login } from "../../Configuration/Setting";
-import { actionLoginRequest } from "../../Redux/Actions/UserAction";
+import { actionRegisterRequest } from "../../Redux/Actions/UserAction";
 
-const LoginPage = (props) => {
+const RegisterPage = (props) => {
     let handleSubmit = (values) => {
-        console.log(values);
-        props.onLogin(values);
+        props.onRegister(values);
         document.getElementById("btn-reset").click();
     };
     let renderFormLogin = () => {
@@ -17,7 +16,11 @@ const LoginPage = (props) => {
             <Formik
                 initialValues={{
                     username: "",
+                    email: "",
                     password: "",
+                    address: "",
+                    phone: "",
+                    role: ["user"],
                 }}
                 onSubmit={handleSubmit}
                 render={(formikProps) => (
@@ -77,6 +80,22 @@ const LoginPage = (props) => {
                                             <div className="row px-3">
                                                 <label className="mb-1">
                                                     <h6 className="mb-0 text-sm">
+                                                        Email
+                                                    </h6>
+                                                </label>
+                                                <Field
+                                                    onChange={
+                                                        formikProps.handleChange
+                                                    }
+                                                    className="mb-4"
+                                                    type="text"
+                                                    name="email"
+                                                    placeholder="Enter a valid username"
+                                                />
+                                            </div>
+                                            <div className="row px-3">
+                                                <label className="mb-1">
+                                                    <h6 className="mb-0 text-sm">
                                                         Password
                                                     </h6>
                                                 </label>
@@ -87,6 +106,38 @@ const LoginPage = (props) => {
                                                     type="password"
                                                     name="password"
                                                     placeholder="Enter password"
+                                                />
+                                            </div>
+                                            <div className="row px-3">
+                                                <label className="mb-1">
+                                                    <h6 className="mb-0 text-sm">
+                                                        Address
+                                                    </h6>
+                                                </label>
+                                                <Field
+                                                    onChange={
+                                                        formikProps.handleChange
+                                                    }
+                                                    className="mb-4"
+                                                    type="text"
+                                                    name="address"
+                                                    placeholder="Enter a valid username"
+                                                />
+                                            </div>
+                                            <div className="row px-3">
+                                                <label className="mb-1">
+                                                    <h6 className="mb-0 text-sm">
+                                                        Phone
+                                                    </h6>
+                                                </label>
+                                                <Field
+                                                    onChange={
+                                                        formikProps.handleChange
+                                                    }
+                                                    className="mb-4"
+                                                    type="text"
+                                                    name="phone"
+                                                    placeholder="Enter a valid username"
                                                 />
                                             </div>
                                             <div className="row px-3 mb-4">
@@ -157,10 +208,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onLogin: (account) => {
-            dispatch(actionLoginRequest(account));
+        onRegister: (account) => {
+            dispatch(actionRegisterRequest(account));
         },
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage);

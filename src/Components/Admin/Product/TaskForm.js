@@ -93,7 +93,7 @@ const TaskForm = (props) => {
                                         </option>
                                     </Field>
                                 </div>
-                                <div className="form-group">
+                                {/* <div className="form-group">
                                     <label>Image :</label>
                                     <Field
                                         onChange={formikProps.handleChange}
@@ -101,17 +101,17 @@ const TaskForm = (props) => {
                                         type="text"
                                         className="form-control"
                                     />
-                                </div>
+                                </div> */}
 
-                                {/* <div className="form-group">
-                  <label>Image :</label>
-                  <Field
-                    onChange={formikProps.handleChange}
-                    name="image"
-                    type="file"
-                    className="form-control"
-                  />
-                </div> */}
+                                <div className="form-group">
+                                    <label>Image :</label>
+                                    <Field
+                                        onChange={formikProps.handleChange}
+                                        name="image"
+                                        type="file"
+                                        className="form-control"
+                                    />
+                                </div>
 
                                 <br />
                                 <div className="text-center">

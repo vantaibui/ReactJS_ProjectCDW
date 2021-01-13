@@ -7,13 +7,13 @@ const ProductItem = (props) => {
     props.onAddProductToCart(product);
   };
 
-  let renderImageProduct = (product) => {
-    let result;
-    result = product.images.map((image, index) => {
-      return image.link;
-    });
-    return result;
-  };
+  // let renderImageProduct = (product) => {
+  //   let result;
+  //   result = product.images.map((image, index) => {
+  //     return image.link;
+  //   });
+  //   return result;
+  // };
 
   return (
     <div className="product">
@@ -21,7 +21,7 @@ const ProductItem = (props) => {
         <div className="box-image">
           <div className="image-product">
             <a href="true">
-              <img src={renderImageProduct(product)} alt="product" />
+              {/* <img src={renderImageProduct(product)} alt="product" /> */}<img src="https://www.dangquangwatch.vn/upload/product/154172738_%C4%91%C3%B2ng-h%E1%BB%93-ch%C3%ADnh-h%C3%A3ng-22.jpg" alt="product" />
             </a>
           </div>
           <div className="image-favorites">

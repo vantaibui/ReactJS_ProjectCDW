@@ -7,95 +7,102 @@ import { toggleFormRequest } from "../../Redux/Actions/FormAction";
 import { actionFetchCategoriesRequest } from "../../Redux/Actions/CategoryAction";
 
 const CategoryManagementPage = (props) => {
-  let { categories, isDisplayForm, editingCategory } = props;
+    let { categories, isDisplayForm, editingCategory } = props;
 
-  useEffect(() => {
-    props.fetchAllCategories();
-  }, []);
+    console.log(categories);
 
-  let onToggleForm = () => {
-    props.onToggleForm();
-  };
+    useEffect(() => {
+        props.fetchAllCategories();
+    }, []);
 
-  let renderCategoryItem = (categories) => {
-    let result;
-    if (categories.length > 0) {
-      result = categories.map((category, index) => {
-        return <CategoryItem key={index} category={category} index={index} />;
-      });
-    }
-    return result;
-  };
+    let onToggleForm = () => {
+        props.onToggleForm();
+    };
 
-  let elementForm =
-    isDisplayForm === true ? (
-      <TaskForm />
-    ) : (
-      ""
-    );
+    let renderCategoryItem = (categories) => {
+        let result;
+        if (categories.length > 0) {
+            result = categories.map((category, index) => {
+                return (
+                    <CategoryItem
+                        key={index}
+                        category={category}
+                        index={index}
+                    />
+                );
+            });
+        }
+        return result;
+    };
 
-  return (
-    <div className="container-fluid px-5">
-      <div className="text-center">
-        <h1>Quản Lý Danh Mục</h1>
-        <hr />
-      </div>
-      <div className="row">
-        <div
-          className={
-            isDisplayForm === true ? "col-xs-4 col-sm-4 col-md-4 col-lg-4" : ""
-          }
-        >
-          {elementForm}
-        </div>
-        <div
-          className={
-            isDisplayForm === true
-              ? "col-xs-8 col-sm-8 col-md-8 col-lg-8"
-              : "col-xs-12 col-sm-12 col-md-12 col-lg-12"
-          }
-        >
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => {
-              onToggleForm();
-            }}
-          >
-            <span className="fa fa-plus mr-2" />
-            Thêm Danh Mục
-          </button>
-          <div className="row mt-2">
-            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <CategoryList>{renderCategoryItem(categories)}</CategoryList>
+    let elementForm = isDisplayForm === true ? <TaskForm /> : "";
+
+    return (
+        <div className="container-fluid px-5">
+            <div className="text-center">
+                <h1>Quản Lý Danh Mục</h1>
+                <hr />
             </div>
-          </div>
+            <div className="row">
+                <div
+                    className={
+                        isDisplayForm === true
+                            ? "col-xs-4 col-sm-4 col-md-4 col-lg-4"
+                            : ""
+                    }
+                >
+                    {elementForm}
+                </div>
+                <div
+                    className={
+                        isDisplayForm === true
+                            ? "col-xs-8 col-sm-8 col-md-8 col-lg-8"
+                            : "col-xs-12 col-sm-12 col-md-12 col-lg-12"
+                    }
+                >
+                    <button
+                        type="button"
+                        className="btn btn-primary"
+                        onClick={() => {
+                            onToggleForm();
+                        }}
+                    >
+                        <span className="fa fa-plus mr-2" />
+                        Thêm Danh Mục
+                    </button>
+                    <div className="row mt-2">
+                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <CategoryList>
+                                {renderCategoryItem(categories)}
+                            </CategoryList>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 const mapStateToProps = (state) => {
-  return {
-    categories: state.CategoryReducer,
-    isDisplayForm: state.IsDisplayForm,
-    editingCategory: state.EditingReducer,
-  };
+    return {
+        categories: state.CategoryReducer,
+        isDisplayForm: state.IsDisplayForm,
+        editingCategory: state.EditingReducer,
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchAllCategories: () => {
-      dispatch(actionFetchCategoriesRequest());
-    },
-    onToggleForm: () => {
-      dispatch(toggleFormRequest());
-    },
-  };
+    return {
+        fetchAllCategories: () => {
+            dispatch(actionFetchCategoriesRequest());
+        },
+        onToggleForm: () => {
+            dispatch(toggleFormRequest());
+        },
+    };
 };
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(CategoryManagementPage);
