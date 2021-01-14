@@ -1,7 +1,7 @@
 import axios from "axios";
 import { domain } from "../Configuration/Setting";
 
-export class UserManagementService{
+export class UserManagementService {
     login = (account) => {
         return axios({
             method: "POST",
@@ -14,6 +14,14 @@ export class UserManagementService{
             method: "POST",
             url: `${domain}/register`,
             data: account,
+        });
+    };
+    forgotPassword = (email) => {
+        console.log(email);
+        return axios({
+            method: "GET",
+            url: `${domain}/sendMail`,
+            data: email,
         });
     };
 }

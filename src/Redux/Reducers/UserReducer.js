@@ -1,7 +1,8 @@
-import { LOGIN, REGISTER } from "../Types/ActionTypes";
+import { FORGOT_PASSWORD, LOGIN, REGISTER } from "../Types/ActionTypes";
 let initialState = {
     credentials: null,
     users: [],
+    email: false,
 };
 
 const UserReducer = (state = initialState, action) => {
@@ -12,6 +13,10 @@ const UserReducer = (state = initialState, action) => {
         }
         case REGISTER: {
             state.users.push(action.payLoad);
+            return { ...state };
+        }
+        case FORGOT_PASSWORD: {
+            state.email = action.payLoad;
             return { ...state };
         }
         default:

@@ -19,6 +19,7 @@ export const UPDATE_PRODUCT_IN_CART = "UPDATE_PRODUCT_IN_CART";
 // User
 export const LOGIN = "LOGIN";
 export const REGISTER = "REGISTER";
+export const FORGOT_PASSWORD = "FORGOT_PASSWORD";
 
 // Form
 export const TOGGLE_FORM = "TOGGLE_FORM";

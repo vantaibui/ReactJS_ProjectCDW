@@ -145,9 +145,9 @@ const LoginPage = (props) => {
             />
         );
     };
-    if (localStorage.getItem(user_login)) {
-        return <Redirect to="/" />;
-    }
+    // if (localStorage.getItem(user_login)) {
+    //     return <Redirect to="/" />;
+    // }
     return renderFormLogin();
 };
 

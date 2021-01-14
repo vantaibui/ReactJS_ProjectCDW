@@ -1,7 +1,7 @@
 import { Redirect } from "react-router-dom";
 import { accessToken, user_login } from "../../Configuration/Setting";
 import { userManagementService } from "../../Services/UserManagementService";
-import { LOGIN, REGISTER } from "../Types/ActionTypes";
+import { FORGOT_PASSWORD, LOGIN, REGISTER } from "../Types/ActionTypes";
 import { CreateAction } from "./CreateAction";
 
 export const actionLoginRequest = (account) => {
@@ -11,11 +11,18 @@ export const actionLoginRequest = (account) => {
             .then((result) => {
                 dispatch(CreateAction(LOGIN, result.data));
                 localStorage.setItem(user_login, JSON.stringify(result.data));
-                localStorage.setItem(
-                    accessToken,
-                    JSON.stringify(result.data.accessToken)
-                );
-                window.location.reload();
+                localStorage.setItem(accessToken, result.data.accessToken);
+                if (
+                    result.data.roles.map((role) => {
+                        console.log(role);
+                        return role;
+                    }) === "ROLE_ADMIN"
+                ) {
+                    console.log("abc");
+                    window.location.assign("/admin");
+                }
+                // window.location.assign("/");
+                // window.location.reload();
             })
             .catch((error) => {
                 alert("Error");
@@ -35,6 +42,20 @@ export const actionRegisterRequest = (account) => {
             .catch((error) => {
                 alert("sai");
                 console.log(error);
+            });
+    };
+};
+
+export const actionForgotPasswordRequest = (email) => {
+    return (dispatch) => {
+        return userManagementService
+            .forgotPassword(email)
+            .then((result) => {
+                console.log(result);
+                dispatch(CreateAction(FORGOT_PASSWORD, result.data));
+            })
+            .catch((error) => {
+                console.log("error");
             });
     };
 };

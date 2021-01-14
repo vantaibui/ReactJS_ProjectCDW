@@ -14,14 +14,6 @@ export class ProductManagementService {
             url: `${domain}/products`,
             data: product,
             headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Credentials": "true",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods":
-                    "GET, POST, PATCH, DELETE, PUT, OPTIONS",
-                "Access-Control-Allow-Headers":
-                    "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
-
                 Authorization: "Bearer " + localStorage.getItem(accessToken),
             },
         });
@@ -33,14 +25,6 @@ export class ProductManagementService {
             url: `${domain}/products/${id}`,
             data: id,
             headers: {
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Credentials": "true",
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods":
-                  "GET, POST, PATCH, DELETE, PUT, OPTIONS",
-              "Access-Control-Allow-Headers":
-                  "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
-
                 Authorization: "Bearer " + localStorage.getItem(accessToken),
             },
         });
