@@ -13,6 +13,7 @@ import Header from "../../Layouts/Header";
 const HomePage = (props) => {
     let { products } = props;
 
+
     useEffect(() => {
         props.fetchAllProducts();
     }, []);

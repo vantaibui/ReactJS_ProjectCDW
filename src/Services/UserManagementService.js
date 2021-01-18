@@ -16,12 +16,26 @@ export class UserManagementService {
             data: account,
         });
     };
+    confirmRegister = (accessToken) => {
+        return axios({
+            method: "POST",
+            url: `${domain}/confirm-account`,
+            data: accessToken,
+        });
+    };
     forgotPassword = (email) => {
         console.log(email);
         return axios({
             method: "GET",
             url: `${domain}/sendMail`,
             data: email,
+        });
+    };
+    order = (values) => {
+        return axios({
+            method: "POST",
+            url: `${domain}/orders`,
+            data: values,
         });
     };
 }

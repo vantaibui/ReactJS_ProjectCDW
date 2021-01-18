@@ -1,14 +1,16 @@
 import { Field, Form, Formik } from "formik";
 import React from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import bgLogin from "../../Asserts/images/bg-login.jpg";
 import { user_login } from "../../Configuration/Setting";
 import { actionRegisterRequest } from "../../Redux/Actions/UserAction";
 
 const RegisterPage = (props) => {
     let handleSubmit = (values) => {
+        console.log(values);
         props.onRegister(values);
+        document.getElementById("btn-confirm-account").click();
         document.getElementById("btn-reset").click();
     };
     let renderFormLogin = () => {
@@ -161,13 +163,22 @@ const RegisterPage = (props) => {
                                                 >
                                                     Forgot Password?
                                                 </a>
+
+                                                <NavLink
+                                                    exact
+                                                    to="/confirm-account"
+                                                    id="btn-confirm-account"
+                                                    className="ml-auto mb-0 text-sm d-none"
+                                                >
+                                                    Forgot Password?
+                                                </NavLink>
                                             </div>
                                             <div className="row mb-3 px-3">
                                                 <button
                                                     type="submit"
                                                     className="btn btn-login text-center"
                                                 >
-                                                    Login
+                                                    Đăng ký
                                                 </button>
                                                 <button
                                                     type="reset"

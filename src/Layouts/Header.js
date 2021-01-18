@@ -7,8 +7,8 @@ import CartItemHeader from "../Components/Home/CartItemHeader";
 const Menus = [
   { label: "Trang chủ", to: "/", exact: true },
   { label: "giới thiệu", to: "/information", exact: false },
-  { label: "đồng hồ nam", to: "/category", exact: false },
-  { label: "đồng hồ nữ", to: "/categorynu", exact: false },
+  { label: "đồng hồ nam", to: "/category-man", exact: false },
+  { label: "đồng hồ nữ", to: "/category-woman", exact: false },
   { label: "blogs", to: "/blogs", exact: false },
   { label: "liên hệ", to: "/contact", exact: false },
 ];

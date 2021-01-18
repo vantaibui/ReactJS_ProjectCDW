@@ -25,22 +25,15 @@ export const actionAddProductRequest = (product) => {
         price: product.price,
         description: product.description,
         evaluate: product.evaluate,
-        category: product.category,
-        images: [
-            {
-                link: product.image,
-                description: "Image of product: " + product.name,
-            },
-        ],
+        category: parseInt(product.category),
+        file: product.image,
     };
     return (dispatch) => {
         return productManagementService
             .addProduct(newProduct)
             .then((result) => {
-                dispatch(
-                    CreateAction(ADD_PRODUCT, result.data)
-                    // actionFetchProductsRequest()
-                );
+                dispatch(CreateAction(ADD_PRODUCT, result.data));
+                window.location.reload();
             })
             .catch((error) => {
                 console.log(error);

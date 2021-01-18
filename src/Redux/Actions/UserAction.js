@@ -1,7 +1,13 @@
 import { Redirect } from "react-router-dom";
 import { accessToken, user_login } from "../../Configuration/Setting";
 import { userManagementService } from "../../Services/UserManagementService";
-import { FORGOT_PASSWORD, LOGIN, REGISTER } from "../Types/ActionTypes";
+import {
+    FORGOT_PASSWORD,
+    LOGIN,
+    REGISTER,
+    ORDER,
+    CONFIRM_ACCOUNT,
+} from "../Types/ActionTypes";
 import { CreateAction } from "./CreateAction";
 
 export const actionLoginRequest = (account) => {
@@ -37,10 +43,24 @@ export const actionRegisterRequest = (account) => {
             .register(account)
             .then((result) => {
                 dispatch(CreateAction(REGISTER, result.data));
+                localStorage.setItem("token", result.data);
                 window.history.go("/login");
             })
             .catch((error) => {
                 alert("sai");
+                console.log(error);
+            });
+    };
+};
+
+export const actionConfirmAccountRequest = (accessToken) => {
+    return (dispatch) => {
+        return userManagementService
+            .confirmRegister(accessToken)
+            .then((result) => {
+                dispatch(CreateAction(CONFIRM_ACCOUNT, result.data));
+            })
+            .catch((error) => {
                 console.log(error);
             });
     };
@@ -56,6 +76,20 @@ export const actionForgotPasswordRequest = (email) => {
             })
             .catch((error) => {
                 console.log("error");
+            });
+    };
+};
+
+export const actionOrderRequest = (values) => {
+    return (dispatch) => {
+        return userManagementService
+            .order(values)
+            .then((result) => {
+                console.log(result.data);
+                dispatch(CreateAction(ORDER, result.data));
+            })
+            .catch((error) => {
+                console.log(error);
             });
     };
 };

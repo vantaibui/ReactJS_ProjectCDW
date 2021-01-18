@@ -9,11 +9,28 @@ export class ProductManagementService {
         });
     };
     addProduct = (product) => {
+        let formData = new FormData();
+        formData.append("file", product.file);
+        formData.append("name", product.name);
+        formData.append("price", product.price);
+        formData.append("description", product.description);
+        formData.append("evaluate", product.evaluate);
+        formData.append("category", product.category);
         return axios({
+            // params: {
+            //     name: product.name,
+            //     price: product.price,
+            //     description: product.description,
+            //     evaluate: product.evaluate,
+            //     category: product.category,
+            //     file: product.file,
+            // },
             method: "POST",
             url: `${domain}/products`,
-            data: product,
+            data: formData,
             headers: {
+                "Content-Type": "multipart/form-data; boundary=<calculated when request is sent>",
+                // "Content-Type": "application/x-www-form-urlencoded",
                 Authorization: "Bearer " + localStorage.getItem(accessToken),
             },
         });

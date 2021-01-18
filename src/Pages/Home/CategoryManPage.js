@@ -8,18 +8,15 @@ import { CreateActionADD_UPDATE } from "../../Redux/Actions/CreateAction";
 import { actionFetchProductsRequest } from "../../Redux/Actions/ProductAction";
 import { ADD_PRODUCT_TO_CART } from "../../Redux/Types/ActionTypes";
 
-const CategoryPage = (props) => {
+const CategoryManPage = (props) => {
     let { products, categories } = props;
 
     console.log(categories);
 
     useEffect(() => {
+        props.fetchAllProducts();
         props.fetchAllCategories();
     }, []);
-
-    // useEffect(() => {
-    //     props.fetchAllProducts();
-    // }, []);
 
     let onAddProductToCart = (product) => {
         props.onAddProductToCart(product);
@@ -142,7 +139,7 @@ const CategoryPage = (props) => {
                                     <div className="is-divider" />
                                     <div className="menu-product-list">
                                         <ul className="menu-ul">
-                                            {/* {renderLiMenuItem(products)} */}
+                                            {renderLiMenuItem(products)}
                                         </ul>
                                     </div>
                                 </div>
@@ -244,7 +241,7 @@ const CategoryPage = (props) => {
                         <div className="col-9 col-category--modifier">
                             <div className="category-selling-product">
                                 <div className="row listProduct">
-                                    {renderProductItem(categories)}
+                                    {renderProductItem(products)}
                                 </div>
                             </div>
                         </div>
@@ -276,4 +273,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryManPage);

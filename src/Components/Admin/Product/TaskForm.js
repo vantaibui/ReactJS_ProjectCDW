@@ -10,6 +10,7 @@ const TaskForm = (props) => {
     };
 
     let handleSubmit = (values) => {
+        console.log(values);
         props.onAddProduct(values);
         document.getElementById("btn-reset").click();
     };
@@ -23,7 +24,7 @@ const TaskForm = (props) => {
                     description: "",
                     price: 0,
                     evaluate: 0,
-                    category: "Men",
+                    category: 1,
                 }}
                 onSubmit={handleSubmit}
                 render={(formikProps) => (
@@ -40,7 +41,7 @@ const TaskForm = (props) => {
                             </button>
                         </div>
                         <div className="card-body border p-3">
-                            <Form>
+                            <Form enctype="multipart/form-data">
                                 <div className="form-group">
                                     <label>Name :</label>
                                     <Field
@@ -81,16 +82,13 @@ const TaskForm = (props) => {
                                     <label>Danh mục :</label>
                                     <Field
                                         onChange={formikProps.handleChange}
-                                        // onBlur={formikProps.handleBlur}
                                         name="category"
                                         as="select"
                                         className="form-control"
                                         required="required"
                                     >
-                                        <option value="Men">Đồng Hồ Nam</option>
-                                        <option value="Woman">
-                                            Đồng Hồ Nữ
-                                        </option>
+                                        <option value={1}>Đồng Hồ Nam</option>
+                                        <option value={2}>Đồng Hồ Nữ</option>
                                     </Field>
                                 </div>
                                 {/* <div className="form-group">
@@ -105,8 +103,13 @@ const TaskForm = (props) => {
 
                                 <div className="form-group">
                                     <label>Image :</label>
-                                    <Field
-                                        onChange={formikProps.handleChange}
+                                    <input
+                                        onChange={(event) =>
+                                            formikProps.setFieldValue(
+                                                "image",
+                                                event.target.files[0]
+                                            )
+                                        }
                                         name="image"
                                         type="file"
                                         className="form-control"

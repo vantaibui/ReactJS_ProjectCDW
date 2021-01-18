@@ -3,13 +3,15 @@ import AdminPage from "./Pages/Admin/AdminPage";
 import CategoryManagementPage from "./Pages/Admin/CategoryManagementPage";
 import ProductManagementPage from "./Pages/Admin/ProductManagementPage";
 import CartPage from "./Pages/Home/CartPage";
-import CategoryPage from "./Pages/Home/CategoryPage";
 import ForgotPasswordPage from "./Pages/Home/ForgotPasswordPage";
 import HomePage from "./Pages/Home/HomePage";
 import LoginPage from "./Pages/Home/LoginPage";
 import RegisterPage from "./Pages/Home/Register";
 import PaymentPage from "./Pages/Home/PaymentPage";
 import NotFoundPage from "./Pages/NotFondPage/NotFoundPage";
+import CategoryManPage from "./Pages/Home/CategoryManPage";
+import CategoryWomanPage from "./Pages/Home/CategoryWomanPage";
+import ConfirmAccountPage from "./Pages/Home/ConfirmAccountPage";
 
 const Routes = [
     {
@@ -28,6 +30,11 @@ const Routes = [
         main: () => <RegisterPage />,
     },
     {
+        path: "/confirm-account",
+        exact: false,
+        main: () => <ConfirmAccountPage />,
+    },
+    {
         path: "/forgot-password",
         exact: false,
         main: () => <ForgotPasswordPage />,
@@ -43,9 +50,14 @@ const Routes = [
         main: () => <PaymentPage />,
     },
     {
-        path: "/category",
+        path: "/category-man",
         exact: true,
-        main: () => <CategoryPage />,
+        main: () => <CategoryManPage />,
+    },
+    {
+        path: "/category-woman",
+        exact: true,
+        main: () => <CategoryWomanPage />,
     },
     {
         path: "/admin",
