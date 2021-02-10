@@ -1,5 +1,5 @@
 import axios from "axios";
-import { accessToken, domain, user_login } from "../Configuration/Setting";
+import { accessToken, domain} from "../Configuration/Setting";
 
 export class CategoryManagementService {
     fetchCategoryList = () => {

@@ -1,9 +1,14 @@
-import { Field, Form, Formik } from "formik";
+import { Field, Form, Formik, ErrorMessage } from "formik";
 import React from "react";
 import { connect } from "react-redux";
-import { NavLink, Redirect } from "react-router-dom";
-import { user_login } from "../../Configuration/Setting";
-import { actionLoginRequest } from "../../Redux/Actions/UserAction";
+import Header from "../../Layouts/Header";
+import Information from "../../Layouts/Information";
+import Footer from "../../Layouts/Footer";
+import {
+    actionLoginRequest,
+    actionOrderRequest,
+} from "../../Redux/Actions/UserAction";
+import * as yup from "yup";
 
 const PaymentPage = (props) => {
     let { cartList } = props;
@@ -48,290 +53,209 @@ const PaymentPage = (props) => {
         return result;
     };
 
-    let showFormCreateAccount = () => {
-        let checkBox = document.getElementById("inputCreateAccount");
-        let formCreateAccount = document.getElementById("form-create-account");
-        if (checkBox.checked === true) {
-            formCreateAccount.style.display = "block";
-        } else {
-            formCreateAccount.style.display = "none";
-        }
-    };
-
-    let showFormLogin = () => {
-        let formLogin = document.getElementById("form-login");
-        {
-            formLogin.style.display = "none"
-                ? (formLogin.style.display = "block")
-                : (formLogin.style.display = "none");
-        }
-    };
-
     let handleSubmit = (values) => {
-        console.log(values);
-        props.onLogin(values);
-        document.getElementById("btn-reset").click();
+        props.onOrder(values);
+        // document.getElementById("btn-reset").click();
     };
 
-    let renderFormLogin = () => {
+    let renderPayment = () => {
+        let schema = yup.object().shape({
+            customerID: yup.string().required("Vui lòng không được để trống!"),
+            consigneeName: yup
+                .string()
+                .required("Vui lòng không được để trống!"),
+            consigneePhone: yup
+                .string()
+                .required("Vui lòng không được để trống!"),
+        });
         return (
             <Formik
-                initialValues={{ username: "", password: "" }}
+                initialValues={{
+                    customerID: "",
+                    total: showProductSubTotal(props.cartList),
+                    consigneeName: "",
+                    consigneePhone: "",
+                    address: "",
+                    cartList: props.cartList,
+                }}
+                validationSchema={schema}
                 onSubmit={handleSubmit}
                 render={(formikProps) => (
-                    <Form id="form-login" className="form-login">
-                        <p>
-                            Nếu trước đây bạn đã mua hàng của chúng tôi, vui
-                            lòng điền đầy đủ thông tin đăng nhập dưới đây. Nếu
-                            bạn là khách hàng mới, vui lòng tiếp tục các bước
-                            tiếp theo.
-                        </p>
-                        <div className="login-content">
-                            <div className="row row--modifier">
-                                <div className="col-6 col--modifier">
-                                    <label htmlFor="username">
-                                        Tên đăng nhập hoặc email <span>*</span>
-                                    </label>
-                                    <Field
-                                        onChange={formikProps.handleChange}
-                                        type="text"
-                                        name="username"
-                                        id="username"
-                                    />
+                    <section className="payment">
+                        <div className="payment__content">
+                            <Form className="form-payment">
+                                <div className="row row--modifier ">
+                                    <div className="col-7 col--modifier ">
+                                        <div className="customer-detail">
+                                            <div className="form-info-billing">
+                                                <h3>Thông tin thanh toán</h3>
+                                                <div className="customer-information">
+                                                    <div className="form-group">
+                                                        <label htmlFor="inputEmail">
+                                                            Id{" "}
+                                                            <span className="required">
+                                                                *
+                                                            </span>
+                                                        </label>
+                                                        <Field
+                                                            onChange={
+                                                                formikProps.handleChange
+                                                            }
+                                                            type="text"
+                                                            className="form-control"
+                                                            id="inputUsername"
+                                                            name="customerID"
+                                                        />
+                                                        <ErrorMessage name="customerID" />
+                                                    </div>
+                                                    <div className="form-group">
+                                                        <label htmlFor="inputEmail">
+                                                            Tên nhận hàng{" "}
+                                                            <span className="required">
+                                                                *
+                                                            </span>
+                                                        </label>
+                                                        <Field
+                                                            onChange={
+                                                                formikProps.handleChange
+                                                            }
+                                                            type="text"
+                                                            className="form-control"
+                                                            id="inputEmail"
+                                                            name="consigneeName"
+                                                        />
+                                                        <ErrorMessage name="consigneeName" />
+                                                    </div>
+                                                    <div className="form-group">
+                                                        <label htmlFor="inputEmail">
+                                                            Số điện thoại{" "}
+                                                            <span className="required">
+                                                                *
+                                                            </span>
+                                                        </label>
+                                                        <Field
+                                                            onChange={
+                                                                formikProps.handleChange
+                                                            }
+                                                            type="text"
+                                                            className="form-control"
+                                                            id="inputEmail"
+                                                            name="consigneePhone"
+                                                        />
+                                                    </div>
+                                                    <div className="form-group">
+                                                        <label htmlFor="inputAddress">
+                                                            Địa chỉ{" "}
+                                                            <span className="required">
+                                                                *
+                                                            </span>
+                                                        </label>
+                                                        <Field
+                                                            onChange={
+                                                                formikProps.handleChange
+                                                            }
+                                                            type="text"
+                                                            className="form-control"
+                                                            id="inputAddress"
+                                                            name="address"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-5 col--modifier ">
+                                        <div className="order-detail">
+                                            <div className="order-detail__content">
+                                                <h3 className="order-review-heading">
+                                                    Đơn hàng của bạn
+                                                </h3>
+                                                <div className="order-review">
+                                                    <table className="table-total">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>
+                                                                    Sản phẩm
+                                                                </th>
+                                                                <th>Tổng</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {renderProductItem(
+                                                                cartList
+                                                            )}
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr className="cart-subtotal">
+                                                                <th>
+                                                                    Tổng phụ
+                                                                </th>
+                                                                <td>
+                                                                    <span className="amount">
+                                                                        {showProductSubTotal(
+                                                                            cartList
+                                                                        )}{" "}
+                                                                        <span>
+                                                                            ₫
+                                                                        </span>
+                                                                    </span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr className="shipping">
+                                                                <th>
+                                                                    Giao hàng
+                                                                </th>
+                                                                <td>
+                                                                    Giao hàng
+                                                                    miễn phí
+                                                                </td>
+                                                            </tr>
+                                                            <tr className="order-total">
+                                                                <th>Tổng</th>
+                                                                <td>
+                                                                    <span className="amount">
+                                                                        {showProductSubTotal(
+                                                                            cartList
+                                                                        )}{" "}
+                                                                        <span>
+                                                                            ₫
+                                                                        </span>
+                                                                    </span>
+                                                                </td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                    <button
+                                                        type="submit"
+                                                        className="btn-order"
+                                                    >
+                                                        Đặt hàng
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="col-6 col--modifier ">
-                                    <label htmlFor="password">
-                                        Mật khẩu <span>*</span>
-                                    </label>
-                                    <Field
-                                        onChange={formikProps.handleChange}
-                                        type="password"
-                                        name="password"
-                                        id="password"
-                                    />
-                                </div>
-                            </div>
+                            </Form>
                         </div>
-                        <p className="form-row">
-                            <button type="submit" className="btn-login">
-                                Đăng nhập
-                            </button>
-                            <button
-                                type="reset"
-                                id="btn-reset"
-                                className="d-none"
-                            >
-                                Reset
-                            </button>
-                            <span className="input-remember-password">
-                                <input
-                                    type="checkbox"
-                                    name="remember-password"
-                                />
-                                <span>Ghi nhớ mật khẩu</span>
-                            </span>
-                        </p>
-                        <p className="forgot-password">
-                            <NavLink exact to="/forgot-password">
-                                Quên mật khẩu?
-                            </NavLink>
-                        </p>
-                    </Form>
+                    </section>
                 )}
             />
         );
     };
 
-    let renderPayment = () => {
-        return (
-            <section className="payment">
-                <div className="payment__content">
-                    <div className="form-login-toggle">
-                        <p>
-                            Bạn đã có tài khoản?
-                            <button
-                                id="button-login"
-                                type="submit"
-                                onClick={() => {
-                                    showFormLogin();
-                                }}
-                            >
-                                Ấn vào đây để đăng nhập
-                            </button>
-                        </p>
-                        {renderFormLogin()}
-                    </div>
-                    <form className="form-payment">
-                        <div className="row row--modifier ">
-                            <div className="col-7 col--modifier ">
-                                <div className="customer-detail">
-                                    <div className="form-info-billing">
-                                        <h3>Thông tin thanh toán</h3>
-                                        <div className="customer-information">
-                                            <div className="form-group">
-                                                <label htmlFor="inputEmail">
-                                                    Tên đăng nhập{" "}
-                                                    <span className="required">
-                                                        *
-                                                    </span>
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control"
-                                                    id="inputUsername"
-                                                    name="username"
-                                                />
-                                            </div>
-                                            <div className="form-group">
-                                                <label htmlFor="inputEmail">
-                                                    Địa chỉ email{" "}
-                                                    <span className="required">
-                                                        *
-                                                    </span>
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control"
-                                                    id="inputEmail"
-                                                    name="email"
-                                                />
-                                            </div>
-                                            <div className="form-group">
-                                                <label htmlFor="inputAddress">
-                                                    Địa chỉ{" "}
-                                                    <span className="required">
-                                                        *
-                                                    </span>
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control"
-                                                    id="inputAddress"
-                                                    name="address"
-                                                />
-                                            </div>
-                                            <div className="form-group">
-                                                <label htmlFor="inputPhoneNumber">
-                                                    Số điện thoại{" "}
-                                                    <span className="required">
-                                                        *
-                                                    </span>
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control"
-                                                    id="inputPhoneNumber"
-                                                    name="phone"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="form-info-account">
-                                        <p className="create-account">
-                                            <label htmlFor="inputCreateAccount">
-                                                <input
-                                                    onClick={() => {
-                                                        showFormCreateAccount();
-                                                    }}
-                                                    type="checkbox"
-                                                    name="inputCreateAccount"
-                                                    id="inputCreateAccount"
-                                                />
-                                                <span>Tạo tài khoản mới?</span>
-                                            </label>
-                                        </p>
-                                        <div
-                                            id="form-create-account"
-                                            className="form-create-account"
-                                        >
-                                            <div className="form-group">
-                                                <label htmlFor="inputCreatePassword">
-                                                    Tạo mật khẩu của tài khoản{" "}
-                                                    <span className="required">
-                                                        *
-                                                    </span>
-                                                </label>
-                                                <input
-                                                    type="password"
-                                                    className="form-control"
-                                                    id="inputCreatePassword"
-                                                    placeholder="Mật khẩu"
-                                                    name="password"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-5 col--modifier ">
-                                <div className="order-detail">
-                                    <div className="order-detail__content">
-                                        <h3 className="order-review-heading">
-                                            Đơn hàng của bạn
-                                        </h3>
-                                        <div className="order-review">
-                                            <table className="table-total">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Sản phẩm</th>
-                                                        <th>Tổng</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {renderProductItem(
-                                                        cartList
-                                                    )}
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr className="cart-subtotal">
-                                                        <th>Tổng phụ</th>
-                                                        <td>
-                                                            <span className="amount">
-                                                                {showProductSubTotal(
-                                                                    cartList
-                                                                )}{" "}
-                                                                <span>₫</span>
-                                                            </span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr className="shipping">
-                                                        <th>Giao hàng</th>
-                                                        <td>
-                                                            Giao hàng miễn phí
-                                                        </td>
-                                                    </tr>
-                                                    <tr className="order-total">
-                                                        <th>Tổng</th>
-                                                        <td>
-                                                            <span className="amount">
-                                                                {showProductSubTotal(
-                                                                    cartList
-                                                                )}{" "}
-                                                                <span>₫</span>
-                                                            </span>
-                                                        </td>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
-                                            <button className="btn-order">
-                                                Đặt hàng
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </section>
-        );
-    };
-
     // if (!localStorage.getItem(user_login)) {
-    //   alert("Vui lòng đăng nhập trước khi thanh toán!");
-    //   return <Redirect to="/login" />;
+    //     alert("Vui lòng đăng nhập trước khi thanh toán!");
+    //     return <Redirect to="/login" />;
     // }
-    return renderPayment();
+    return (
+        <>
+            <Header />
+            {renderPayment()}
+            <Information />
+            <Footer />
+        </>
+    );
 };
 
 const mapStateToProps = (state) => {
@@ -344,6 +268,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onLogin: (account) => {
             dispatch(actionLoginRequest(account));
+        },
+        onOrder: (values) => {
+            dispatch(actionOrderRequest(values));
         },
     };
 };

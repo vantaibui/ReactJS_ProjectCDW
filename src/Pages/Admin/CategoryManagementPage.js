@@ -5,6 +5,7 @@ import CategoryList from "../../Components/Admin/Category/CategoryList";
 import CategoryItem from "../../Components/Admin/Category/CategoryItem";
 import { toggleFormRequest } from "../../Redux/Actions/FormAction";
 import { actionFetchCategoriesRequest } from "../../Redux/Actions/CategoryAction";
+import HeaderAdmin from "../../Layouts/HeaderAdmin";
 
 const CategoryManagementPage = (props) => {
     let { categories, isDisplayForm, editingCategory } = props;
@@ -38,48 +39,50 @@ const CategoryManagementPage = (props) => {
     let elementForm = isDisplayForm === true ? <TaskForm /> : "";
 
     return (
-        <div className="container-fluid px-5">
-            <div className="text-center">
-                <h1>Quản Lý Danh Mục</h1>
-                <hr />
-            </div>
-            <div className="row">
-                <div
-                    className={
-                        isDisplayForm === true
-                            ? "col-xs-4 col-sm-4 col-md-4 col-lg-4"
-                            : ""
-                    }
-                >
-                    {elementForm}
+        <>
+            <div className="container-fluid px-5">
+                <div className="text-center">
+                    <h1>Quản Lý Danh Mục</h1>
+                    <hr />
                 </div>
-                <div
-                    className={
-                        isDisplayForm === true
-                            ? "col-xs-8 col-sm-8 col-md-8 col-lg-8"
-                            : "col-xs-12 col-sm-12 col-md-12 col-lg-12"
-                    }
-                >
-                    <button
-                        type="button"
-                        className="btn btn-primary"
-                        onClick={() => {
-                            onToggleForm();
-                        }}
+                <div className="row">
+                    <div
+                        className={
+                            isDisplayForm === true
+                                ? "col-xs-4 col-sm-4 col-md-4 col-lg-4"
+                                : ""
+                        }
                     >
-                        <span className="fa fa-plus mr-2" />
-                        Thêm Danh Mục
-                    </button>
-                    <div className="row mt-2">
-                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <CategoryList>
-                                {renderCategoryItem(categories)}
-                            </CategoryList>
+                        {elementForm}
+                    </div>
+                    <div
+                        className={
+                            isDisplayForm === true
+                                ? "col-xs-8 col-sm-8 col-md-8 col-lg-8"
+                                : "col-xs-12 col-sm-12 col-md-12 col-lg-12"
+                        }
+                    >
+                        <button
+                            type="button"
+                            className="btn btn-primary"
+                            onClick={() => {
+                                onToggleForm();
+                            }}
+                        >
+                            <span className="fa fa-plus mr-2" />
+                            Thêm Danh Mục
+                        </button>
+                        <div className="row mt-2">
+                            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <CategoryList>
+                                    {renderCategoryItem(categories)}
+                                </CategoryList>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import LiMenuItem from "../../Components/Home/LiMenuItem";
 import ProductItem from "../../Components/Home/ProductItem";
+import Footer from "../../Layouts/Footer";
+import Header from "../../Layouts/Header";
+import Information from "../../Layouts/Information";
 import { actionFetchCategoriesRequest } from "../../Redux/Actions/CategoryAction";
 import { CreateActionADD_UPDATE } from "../../Redux/Actions/CreateAction";
 import { actionFetchProductsRequest } from "../../Redux/Actions/ProductAction";
@@ -55,6 +58,7 @@ const CategoryManPage = (props) => {
 
     return (
         <>
+            <Header />
             <section className="menuCategory">
                 <div className="menuCategory__content">
                     <div className="row row--modifier">
@@ -248,6 +252,9 @@ const CategoryManPage = (props) => {
                     </div>
                 </div>
             </section>
+
+            <Information />
+            <Footer />
         </>
     );
 };

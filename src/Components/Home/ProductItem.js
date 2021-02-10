@@ -11,7 +11,6 @@ const ProductItem = (props) => {
   let renderImageProduct = (product) => {
     let result;
     result = product.images.map((image) => {
-      console.log(image.link);
       return image.link;
     });
     return result;

@@ -1,4 +1,3 @@
-import { Redirect } from "react-router-dom";
 import { accessToken, user_login } from "../../Configuration/Setting";
 import { userManagementService } from "../../Services/UserManagementService";
 import {
@@ -27,7 +26,7 @@ export const actionLoginRequest = (account) => {
                     console.log("abc");
                     window.location.assign("/admin");
                 }
-                // window.location.assign("/");
+                window.history.go("/");
                 // window.location.reload();
             })
             .catch((error) => {
@@ -59,6 +58,7 @@ export const actionConfirmAccountRequest = (accessToken) => {
             .confirmRegister(accessToken)
             .then((result) => {
                 dispatch(CreateAction(CONFIRM_ACCOUNT, result.data));
+                window.history.go("/login");
             })
             .catch((error) => {
                 console.log(error);
@@ -80,13 +80,25 @@ export const actionForgotPasswordRequest = (email) => {
     };
 };
 
+
 export const actionOrderRequest = (values) => {
+    console.log(values);
+    let newOrder = {
+        customerID: parseInt(values.customerID),
+        total: parseInt(values.total),
+        consigneeName: values.consigneeName,
+        consigneePhone: values.consigneePhone,
+        address: values.address,
+        items: values.cartList,
+    };
+    console.log(newOrder);
     return (dispatch) => {
         return userManagementService
-            .order(values)
+            .order(newOrder)
             .then((result) => {
                 console.log(result.data);
                 dispatch(CreateAction(ORDER, result.data));
+                localStorage.removeItem("cart");
             })
             .catch((error) => {
                 console.log(error);

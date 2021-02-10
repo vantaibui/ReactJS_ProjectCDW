@@ -2,7 +2,6 @@ import {
   ADD_CATEGORY,
   DELETE_CATEGORY,
   FETCH_CATEGORIES,
-  UPDATE_CATEGORY,
 } from "../Types/ActionTypes";
 
 let initialState = [];

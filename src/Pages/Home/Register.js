@@ -1,10 +1,11 @@
-import { Field, Form, Formik } from "formik";
+import { Field, Form, Formik, ErrorMessage } from "formik";
 import React from "react";
 import { connect } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
 import bgLogin from "../../Asserts/images/bg-login.jpg";
 import { user_login } from "../../Configuration/Setting";
 import { actionRegisterRequest } from "../../Redux/Actions/UserAction";
+import * as Yup from "yup";
 
 const RegisterPage = (props) => {
     let handleSubmit = (values) => {
@@ -23,7 +24,19 @@ const RegisterPage = (props) => {
                     address: "",
                     phone: "",
                     role: ["user"],
-                }}
+                }}validationSchema={Yup.object().shape({
+                    username: Yup.string().required("Vui lòng nhập tài khoản!"),
+                    email: Yup.string()
+                        .required("Vui lòng nhập email!")
+                        .email("Email không hợp lệ!"),
+                    address: Yup.string().required("Vui lòng nhập địa chỉ!"),
+                    phone: Yup.string()
+                        .length(10, "Vui lòng nhập đúng số điện thoại!")
+                        .required("Vui lòng nhập số điện thoại!"),
+                    password: Yup.string()
+                        .min(8, "Vui lòng nhập lớn hơn 8 kí tự!")
+                        .required("Vui lòng nhập mật khẩu!"),
+                })}
                 onSubmit={handleSubmit}
                 render={(formikProps) => (
                     <div className="container-fluid section-login px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
@@ -78,6 +91,7 @@ const RegisterPage = (props) => {
                                                     name="username"
                                                     placeholder="Enter a valid username"
                                                 />
+                                                <ErrorMessage name="username"/>
                                             </div>
                                             <div className="row px-3">
                                                 <label className="mb-1">
@@ -94,6 +108,7 @@ const RegisterPage = (props) => {
                                                     name="email"
                                                     placeholder="Enter a valid username"
                                                 />
+                                                <ErrorMessage name="email"/>
                                             </div>
                                             <div className="row px-3">
                                                 <label className="mb-1">
@@ -109,6 +124,7 @@ const RegisterPage = (props) => {
                                                     name="password"
                                                     placeholder="Enter password"
                                                 />
+                                                <ErrorMessage name="password"/>
                                             </div>
                                             <div className="row px-3">
                                                 <label className="mb-1">
@@ -123,8 +139,9 @@ const RegisterPage = (props) => {
                                                     className="mb-4"
                                                     type="text"
                                                     name="address"
-                                                    placeholder="Enter a valid username"
+                                                    placeholder="Enter a valid address"
                                                 />
+                                                <ErrorMessage name="address"/>
                                             </div>
                                             <div className="row px-3">
                                                 <label className="mb-1">
@@ -139,8 +156,9 @@ const RegisterPage = (props) => {
                                                     className="mb-4"
                                                     type="text"
                                                     name="phone"
-                                                    placeholder="Enter a valid username"
+                                                    placeholder="Enter a valid phone"
                                                 />
+                                                <ErrorMessage name="phone"/>
                                             </div>
                                             <div className="row px-3 mb-4">
                                                 <div className="custom-control custom-checkbox custom-control-inline">

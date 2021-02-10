@@ -1,10 +1,10 @@
 import { Field, Form, Formik } from "formik";
 import React from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 import bgLogin from "../../Asserts/images/bg-login.jpg";
-import { user_login } from "../../Configuration/Setting";
 import { actionLoginRequest } from "../../Redux/Actions/UserAction";
+import {NavLink} from "react-router-dom"
+
 
 const LoginPage = (props) => {
     let handleSubmit = (values) => {
@@ -130,9 +130,9 @@ const LoginPage = (props) => {
                                             <div className="row mb-4 px-3">
                                                 <small className="font-weight-bold">
                                                     Don't have an account?
-                                                    <a className="text-danger">
+                                                    <NavLink exact to="/register" className="text-danger ml-1">
                                                         Register
-                                                    </a>
+                                                    </NavLink>
                                                 </small>
                                             </div>
                                         </div>

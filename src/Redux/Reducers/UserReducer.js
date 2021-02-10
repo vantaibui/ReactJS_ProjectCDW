@@ -1,4 +1,4 @@
-import { FORGOT_PASSWORD, LOGIN, ORDER, REGISTER } from "../Types/ActionTypes";
+import { LOGIN, ORDER, REGISTER } from "../Types/ActionTypes";
 let initialState = {
     credentials: null,
     users: [],

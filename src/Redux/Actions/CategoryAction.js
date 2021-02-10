@@ -4,7 +4,6 @@ import {
   DELETE_CATEGORY,
   EDIT_CATEGORY,
   FETCH_CATEGORIES,
-  UPDATE_CATEGORY,
 } from "../Types/ActionTypes";
 import { CreateAction } from "./CreateAction";
 

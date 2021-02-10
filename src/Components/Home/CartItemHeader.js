@@ -16,7 +16,7 @@ const CartItemHeader = (props) => {
         <ul className="menu-ul border-bottom mt-3">
             <li className="menu-li">
                 <a className="image-product" href="#">
-                    <img src={renderImageProduct(productItem)} alt="abc" />
+                    <img src={renderImageProduct(productItem?.product)} alt="abc" />
                     <span> {productItem?.product.name} </span>
                 </a>
                 <span className="quantity-product">

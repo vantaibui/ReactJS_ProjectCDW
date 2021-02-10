@@ -7,6 +7,9 @@ import { actionFetchCategoriesRequest } from "../../Redux/Actions/CategoryAction
 import { CreateActionADD_UPDATE } from "../../Redux/Actions/CreateAction";
 import { actionFetchProductsRequest } from "../../Redux/Actions/ProductAction";
 import { ADD_PRODUCT_TO_CART } from "../../Redux/Types/ActionTypes";
+import Header from "../../Layouts/Header";
+import Information from "../../Layouts/Information";
+import Footer from "../../Layouts/Footer";
 
 const CategoryWomanPage = (props) => {
     let { products, categories } = props;
@@ -55,6 +58,7 @@ const CategoryWomanPage = (props) => {
 
     return (
         <>
+            <Header />
             <section className="menuCategory">
                 <div className="menuCategory__content">
                     <div className="row row--modifier">
@@ -248,6 +252,9 @@ const CategoryWomanPage = (props) => {
                     </div>
                 </div>
             </section>
+
+            <Information />
+            <Footer />
         </>
     );
 };

@@ -86,12 +86,15 @@
 import React from "react";
 import ProductManagementPage from "./ProductManagementPage";
 import CategoryManagementPage from "./CategoryManagementPage";
+import HeaderAdmin from "../../Layouts/HeaderAdmin";
 
 const AdminPage = () => {
     // return <ProductManagementPage />;
     return (
         <>
-            <ProductManagementPage /> <CategoryManagementPage />
+            <HeaderAdmin />
+            <ProductManagementPage />
+            <CategoryManagementPage />
         </>
     );
 };

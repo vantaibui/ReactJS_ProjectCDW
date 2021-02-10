@@ -27,7 +27,7 @@ function App() {
     return (
         <BrowserRouter>
             <Fragment>
-                <Header />
+                {/* <Header /> */}
                 {showContentMenu(Routes)}
                 {/* <Footer /> */}
 
